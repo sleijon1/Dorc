@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Dorc</string>
+    <string name="spell_btn">Button for choosing spells</string>
+    <string name="talent_btn">Button for choosing talents</string>
+    <string name="backpack_btn">Button for seeing resources</string>
+    <string name="profile_btn">Button for seeing currently equipped gear</string>
+    <string name="mage_btn">Button for choosing orc mage as current opponent</string>
+    <string name="warrior_btn">Button for choosing orc warrior as current opponent</string>
+    <string name="rogue_btn">Button for choosing orc rogue as current opponent</string>
 </resources>
