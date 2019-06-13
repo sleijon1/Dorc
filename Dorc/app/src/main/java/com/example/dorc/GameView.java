@@ -16,6 +16,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     MainThread thread;
     private Orc testOrc;
     public SurfaceHolder surfaceHolder = getHolder();
+    //This player will not be created in gameView but is here for testing purposes
+    private Player testPlayer;
 
     public GameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -28,6 +30,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update(){
+
+    }
+
+    public void updateGold(){
 
     }
 
@@ -44,6 +50,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcboytwo));
+        testPlayer = new Player();
         thread.setRunning(true);
         thread.start();
     }
