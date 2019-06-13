@@ -36,9 +36,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             canvas.drawColor(Color.BLACK);
-            Paint paint = new Paint();
-            paint.setColor(Color.rgb(0, 250, 0));
-            canvas.drawRect(250, 225, 200, 275, paint);
             Log.i(TAG, "Trying to draw Orc");
             testOrc.draw(canvas);
         }

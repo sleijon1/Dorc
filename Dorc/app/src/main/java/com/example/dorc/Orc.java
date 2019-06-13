@@ -15,11 +15,11 @@ public class Orc {
     }
 
     public void draw(Canvas canvas) {
-
-                    Log.i(TAG, "Going into drawing");
-                    canvas.drawBitmap(image, 50, 50, null);
-                    Log.i(TAG, "Going out of drawing");
-
+        Log.i(TAG, "Going into drawing");
+        int centreX = ((canvas.getWidth() - 256) / 2) + 128; //256 is width of image
+        int centreY = ((canvas.getHeight() - 256) / 2) - 128; //256 is height of image
+        canvas.drawBitmap(image, -40, centreY, null);
+        Log.i(TAG, "Going out of drawing");
     }
-    }
+}
 

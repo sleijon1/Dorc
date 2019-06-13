@@ -37,17 +37,11 @@ public class MainThread extends Thread {
 
 
             try {
-                Log.i(TAG, "Trying to lock canvas");
                 canvas = this.surfaceHolder.lockCanvas();
-                Log.i(TAG, "Successfully locked");
                 synchronized (surfaceHolder) {
-                    Log.i(TAG, "Updating");
                     this.gameView.update();
-                    Log.i(TAG, "Drawing");
                     this.gameView.draw(canvas);
-                    Log.i(TAG, "Going into unlock");
                     this.surfaceHolder.unlockCanvasAndPost(canvas);
-                    Log.i(TAG, "Should've successfully unlocked");
                 }
             } catch (Exception e) {
                 //Add error handling
