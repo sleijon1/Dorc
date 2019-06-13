@@ -1,5 +1,6 @@
 package com.example.dorc;
 
+import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -7,11 +8,13 @@ import android.view.SurfaceHolder;
 import android.view.View;
 
 public class MainThread extends Thread {
+    private static final String TAG = "MainThread";
     private SurfaceHolder surfaceHolder;
     private GameView gameView;
     private boolean running;
     public static Canvas canvas;
 
+    @SuppressLint("ClickableViewAccessibility")
     public MainThread(SurfaceHolder surfaceHolder, GameView gameView){
         super();
         this.surfaceHolder = surfaceHolder;
@@ -20,7 +23,7 @@ public class MainThread extends Thread {
         gameView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.i("registered touch","registered touch");
+                Log.i(TAG,"registered touch");
                 return false;
             }
         });
@@ -34,11 +37,17 @@ public class MainThread extends Thread {
 
 
             try {
+                Log.i(TAG, "Trying to lock canvas");
                 canvas = this.surfaceHolder.lockCanvas();
+                Log.i(TAG, "Successfully locked");
                 synchronized (surfaceHolder) {
+                    Log.i(TAG, "Updating");
                     this.gameView.update();
+                    Log.i(TAG, "Drawing");
                     this.gameView.draw(canvas);
+                    Log.i(TAG, "Going into unlock");
                     this.surfaceHolder.unlockCanvasAndPost(canvas);
+                    Log.i(TAG, "Should've successfully unlocked");
                 }
             } catch (Exception e) {
                 //Add error handling

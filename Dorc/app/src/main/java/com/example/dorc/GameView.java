@@ -1,6 +1,7 @@
 package com.example.dorc;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,17 +9,20 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
-import android.widget.Toast;
+
+import static android.content.ContentValues.TAG;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     MainThread thread;
+    private Orc testOrc;
+    public SurfaceHolder surfaceHolder = getHolder();
 
     public GameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 
-        getHolder().addCallback(this);
+        surfaceHolder.addCallback(this);
 
-        thread = new MainThread(getHolder(), this);
+        thread = new MainThread(surfaceHolder, this);
         setFocusable(true);
 
     }
@@ -35,14 +39,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             Paint paint = new Paint();
             paint.setColor(Color.rgb(0, 250, 0));
             canvas.drawRect(250, 225, 200, 275, paint);
+            Log.i(TAG, "Trying to draw Orc");
+            testOrc.draw(canvas);
         }
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcboytwo));
         thread.setRunning(true);
         thread.start();
-
     }
 
     @Override
