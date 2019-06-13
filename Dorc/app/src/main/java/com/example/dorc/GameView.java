@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static android.content.ContentValues.TAG;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
@@ -29,12 +32,24 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    public void update(){
-
+    public void update(boolean hitOrResume){
+        updateGold(hitOrResume);
     }
 
-    public void updateGold(){
+    public void updateGold(boolean hitOrResume){
+        long lastMeasured = testPlayer.getLastMeasured();
+        long currentTime = Calendar.getInstance().getTimeInMillis();
+        long timeDifference = currentTime-lastMeasured;
 
+        if(timeDifference != currentTime){
+            testPlayer.getGold().increaseGold(timeDifference, false);
+        }
+        if(hitOrResume){
+            testPlayer.getGold().increaseGold(timeDifference, true);
+            //Update visual value by chunk
+        }
+
+        //testPlayer.getGold().;
     }
 
     @Override

@@ -2,16 +2,19 @@ package com.example.dorc;
 
 public class Gold {
     private int gold;
+    private int timeGatheredGold;
 
     public Gold(){
         gold = 0;
     }
 
-    public void increaseGold(){
-        gold += 1;
-    }
-    //Hit can be crit or regular hit
-    public void increaseGold(int hit){
-        gold += 20;
+    //If we resume or if player hits orc we want to increase instantly
+    public void increaseGold(long increaseAmount, boolean hitOrResume){
+        if(hitOrResume){
+            //call function for updating visual gold value for instant increase
+            gold += increaseAmount;
+        }else{
+            timeGatheredGold += increaseAmount;
+        }
     }
 }

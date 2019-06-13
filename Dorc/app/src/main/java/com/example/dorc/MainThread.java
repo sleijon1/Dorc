@@ -24,6 +24,7 @@ public class MainThread extends Thread {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 Log.i(TAG,"registered touch");
+                //gameView.update(true);
                 return false;
             }
         });
@@ -39,7 +40,7 @@ public class MainThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.gameView.update();
+                    this.gameView.update(false);
                     this.gameView.draw(canvas);
                     this.surfaceHolder.unlockCanvasAndPost(canvas);
                 }
