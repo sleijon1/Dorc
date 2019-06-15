@@ -7,4 +7,6 @@
     <string name="mage_btn">Button for choosing orc mage as current opponent</string>
     <string name="warrior_btn">Button for choosing orc warrior as current opponent</string>
     <string name="rogue_btn">Button for choosing orc rogue as current opponent</string>
+    <string name="gold_icon">Image icon for gold icons</string>
+    <string name="player_gold">Number for players current amount of gold coins</string>
 </resources>
