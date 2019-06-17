@@ -35,6 +35,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     }
 
+    // Because we call this from onTouchEvent, this code will be executed for both
+    // normal touch events and for when the system calls this using Accessibility
+    @Override
+    public boolean performClick() {
+        super.performClick();
+
+        return true;
+    }
+
     public void update(){
     }
 

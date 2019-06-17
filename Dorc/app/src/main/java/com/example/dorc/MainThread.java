@@ -15,6 +15,7 @@ public class MainThread extends Thread {
     public static Canvas canvas;
 
     @SuppressLint("ClickableViewAccessibility")
+
     public MainThread(SurfaceHolder surfaceHolder, GameView gameView){
         super();
         this.surfaceHolder = surfaceHolder;
@@ -24,7 +25,6 @@ public class MainThread extends Thread {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 Log.i(TAG,"registered touch");
-                //gameView.update(true);
                 return false;
             }
         });

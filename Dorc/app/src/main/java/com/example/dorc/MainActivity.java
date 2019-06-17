@@ -1,6 +1,9 @@
 package com.example.dorc;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Window;
@@ -24,6 +27,20 @@ public class MainActivity extends FragmentActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_main);
+
+        SharedViewModel sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
+
+        sharedViewModel.getSelected().observe(this, new Observer<PlayerHit>(){
+            @Override
+            public void onChanged(@Nullable PlayerHit updatedObject) {
+                Log.i(TAG, "onChanged: recieved freshObject");
+                if (updatedObject != null) {
+                    Log.i(TAG, "object was updated");
+                    //
+                }
+            }
+        });
+
 
         renderGold();
     }
