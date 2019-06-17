@@ -40,7 +40,7 @@ public class MainThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.gameView.update(false);
+                    this.gameView.update();
                     this.gameView.draw(canvas);
                     this.surfaceHolder.unlockCanvasAndPost(canvas);
                 }

@@ -19,13 +19,11 @@ import java.util.Date;
 import static android.content.ContentValues.TAG;
 import static java.lang.String.valueOf;
 
-public class GameView extends SurfaceView implements SurfaceHolder.Callback {
+public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     MainThread thread;
     private Orc testOrc;
     public SurfaceHolder surfaceHolder = getHolder();
     //This player will not be created in gameView but is here for testing purposes
-    private Player testPlayer;
-    private Gold testGold;
 
     public GameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -37,33 +35,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    public void update(boolean hitOrResume){
-        updateGold(hitOrResume);
-    }
-
-    public void updateGold(boolean hitOrResume){
-        long lastMeasured = testPlayer.getLastMeasured();
-        long currentTime = Calendar.getInstance().getTimeInMillis();
-        long timeDifference = currentTime-lastMeasured;
-
-        if(timeDifference != currentTime){
-            testPlayer.getGold().increaseGold(timeDifference, false);
-        }
-        if(hitOrResume){
-            testPlayer.getGold().increaseGold(timeDifference, true);
-            //Update visual value by chunk
-        }
-
-        testGold = testPlayer.getGold();
-        int goldAmount = testGold.getAmount();
-        TextView goldDisplay = findViewById(R.id.playerGold);
-        String testInt = String.valueOf(goldAmount);
-        Log.i(TAG, "got to setText" + testInt + goldDisplay);
-       try{goldDisplay.setText(String.valueOf(goldAmount));}
-       catch(Exception e){
-           e.printStackTrace();
-       }
-        Log.i(TAG, "got past setText");
+    public void update(){
     }
 
     @Override
@@ -79,7 +51,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcboytwo));
-        testPlayer = new Player();
         thread.setRunning(true);
         thread.start();
     }

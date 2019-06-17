@@ -8,104 +8,90 @@
         tools:context=".MainActivity"
         android:weightSum="100">
 
-    <com.example.dorc.GameView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/gameView2"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="120dp" android:layout_marginStart="120dp" android:layout_marginTop="150dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="140dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0"/>
     <ImageButton
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/orcWarrior"
             android:contentDescription="@string/rogue_btn"
-            app:layout_constraintEnd_toStartOf="@+id/gameView2"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.8" android:layout_marginBottom="200dp"
+            android:layout_marginBottom="200dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/orcRogue"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/fragment" android:layout_marginRight="8dp"/>
     <ImageButton
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/orcRogue"
             android:contentDescription="@string/rogue_btn"
-            app:layout_constraintEnd_toStartOf="@+id/gameView2"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/orcMage"
-            app:layout_constraintHorizontal_bias="0.8" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/orcWarrior"/>
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/orcWarrior" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/fragment" android:layout_marginRight="8dp"/>
     <ImageButton
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/orcMage"
             android:contentDescription="@string/mage_btn"
-            app:layout_constraintEnd_toStartOf="@+id/gameView2"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="200dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/orcRogue"/>
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/orcRogue"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/fragment"
+            android:layout_marginRight="8dp"/>
     <ImageButton
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/playerProfileBtn"
             android:contentDescription="@string/profile_btn"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/gameView2" android:layout_marginBottom="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="30dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="30dp"
             app:layout_constraintEnd_toStartOf="@+id/backpackBtn" android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"/>
+            android:layout_marginRight="4dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment"/>
     <ImageButton
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/backpackBtn"
             android:contentDescription="@string/backpack_btn"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/gameView2" android:layout_marginBottom="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toEndOf="@+id/playerProfileBtn"
             android:layout_marginStart="4dp" android:layout_marginLeft="4dp"
-            app:layout_constraintVertical_bias="0.506" app:layout_constraintEnd_toStartOf="@+id/talentBtn"
-            android:layout_marginEnd="4dp" android:layout_marginRight="4dp"/>
+            app:layout_constraintEnd_toStartOf="@+id/talentBtn"
+            android:layout_marginEnd="4dp" android:layout_marginRight="4dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment"/>
     <ImageButton
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/talentBtn"
             android:contentDescription="@string/talent_btn"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/gameView2" android:layout_marginBottom="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toEndOf="@+id/backpackBtn"
             android:layout_marginStart="4dp" android:layout_marginLeft="4dp"
-            app:layout_constraintVertical_bias="0.506" app:layout_constraintEnd_toStartOf="@+id/spellBtn"
-            android:layout_marginEnd="4dp" android:layout_marginRight="4dp"/>
+            app:layout_constraintEnd_toStartOf="@+id/spellBtn"
+            android:layout_marginEnd="4dp" android:layout_marginRight="4dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment"/>
     <ImageButton
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/spellBtn"
             android:contentDescription="@string/spell_btn"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/gameView2" android:layout_marginBottom="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toEndOf="@+id/talentBtn"
             android:layout_marginStart="4dp" android:layout_marginLeft="4dp" android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="30dp"
-            app:layout_constraintHorizontal_bias="0.096" app:layout_constraintVertical_bias="0.506"/>
+            app:layout_constraintHorizontal_bias="0.096" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment"/>
     <ImageView
             android:src="@android:drawable/btn_star_big_on"
             android:layout_width="wrap_content"
@@ -124,9 +110,19 @@
             android:id="@+id/playerGold" app:layout_constraintStart_toEndOf="@+id/goldIcon"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/gameView2" android:layout_marginTop="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.022"
-            app:layout_constraintVertical_bias="0.065" android:contentDescription="@string/player_gold"
+            android:contentDescription="@string/player_gold"
             android:background="#C200E7"/>
+    <fragment
+            android:layout_width="238dp"
+            android:layout_height="382dp" android:name="com.example.dorc.GameFragment"
+            android:id="@+id/fragment" android:layout_marginTop="200dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toEndOf="@+id/playerGold" android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp" app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginBottom="200dp" app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
