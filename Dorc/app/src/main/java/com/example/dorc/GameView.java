@@ -9,11 +9,15 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
+import android.widget.EditText;
+import android.widget.TextView;
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import static android.content.ContentValues.TAG;
+import static java.lang.String.valueOf;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     MainThread thread;
@@ -21,6 +25,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public SurfaceHolder surfaceHolder = getHolder();
     //This player will not be created in gameView but is here for testing purposes
     private Player testPlayer;
+    private Gold testGold;
 
     public GameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -49,7 +54,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             //Update visual value by chunk
         }
 
-        //testPlayer.getGold().;
+        testGold = testPlayer.getGold();
+        int goldAmount = testGold.getAmount();
+        TextView goldDisplay = findViewById(R.id.playerGold);
+        String testInt = String.valueOf(goldAmount);
+        Log.i(TAG, "got to setText" + testInt + goldDisplay);
+       try{goldDisplay.setText(String.valueOf(goldAmount));}
+       catch(Exception e){
+           e.printStackTrace();
+       }
+        Log.i(TAG, "got past setText");
     }
 
     @Override

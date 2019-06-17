@@ -17,4 +17,8 @@ public class Gold {
             timeGatheredGold += increaseAmount;
         }
     }
+
+    public int getAmount(){
+        return gold;
+    }
 }
