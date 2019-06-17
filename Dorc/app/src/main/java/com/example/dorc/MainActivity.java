@@ -1,6 +1,5 @@
 package com.example.dorc;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -10,11 +9,8 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import static android.content.ContentValues.TAG;
-
 public class MainActivity extends FragmentActivity {
-    private Player testPlayer;
-    private Gold testGold;
+    Player testPlayer = new Player();
 
     private static final String TAG = "MainActivity";
 
@@ -29,31 +25,48 @@ public class MainActivity extends FragmentActivity {
 
         setContentView(R.layout.activity_main);
 
-        Log.i(TAG, "well we got here fam");
+        renderGold();
     }
 
-    public void updateGold(boolean hitOrResume){
+    public void renderGold() {
+        new Thread(new Runnable() {
+            public void run() {
+                while(true){
+                    updateGold(false, testPlayer);
+                }
+            }
+
+        }).start();
+    }
+
+
+    public void updateGold(boolean hitOrResume, Player testPlayer){
         long lastMeasured = testPlayer.getLastMeasured();
         long currentTime = Calendar.getInstance().getTimeInMillis();
         long timeDifference = currentTime-lastMeasured;
 
-        if(timeDifference != currentTime){
-            testPlayer.getGold().increaseGold(timeDifference, false);
-        }
-        if(hitOrResume){
-            testPlayer.getGold().increaseGold(timeDifference, true);
-            //Update visual value by chunk
+        if(timeDifference > 1000 && timeDifference != currentTime) {
+            if (hitOrResume) {
+                //TODO needs to be accurately updated with hit value
+                testPlayer.getGold().increaseGold(1);
+                //Update visual value by chunk
+            }else {
+                testPlayer.getGold().increaseGold(1);
+            }
+
+            Gold testGold = testPlayer.getGold();
+            int goldAmount = testGold.getAmount();
+            Log.i(TAG, "curr gold: " + goldAmount);
+            TextView goldDisplay = findViewById(R.id.playerGold);
+            goldDisplay.setText(String.valueOf(goldAmount));
+
+            testPlayer.setLastMeasured(Calendar.getInstance().getTimeInMillis());
+
+        }else {
+            if(timeDifference == currentTime) {
+                testPlayer.setLastMeasured(currentTime);
+            }
         }
 
-        testGold = testPlayer.getGold();
-        int goldAmount = testGold.getAmount();
-        TextView goldDisplay = findViewById(R.id.playerGold);
-        String testInt = String.valueOf(goldAmount);
-        Log.i(TAG, "got to setText" + testInt + goldDisplay);
-        try{goldDisplay.setText(String.valueOf(goldAmount));}
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        Log.i(TAG, "got past setText");
     }
 }

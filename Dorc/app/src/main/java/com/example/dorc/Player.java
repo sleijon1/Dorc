@@ -1,7 +1,7 @@
 package com.example.dorc;
 
 public class Player {
-    private int lastMeasuredTime = 0;
+    private long lastMeasuredTime = 0;
     private Gold currentGold = new Gold();
     //private Experience currentExperience;
     //private HashMap currentGear;
@@ -15,12 +15,12 @@ public class Player {
         return currentGold;
     }
 
-    public int getLastMeasured(){
+    public long getLastMeasured(){
         return lastMeasuredTime;
     }
 
     // last measured time in milliseconds since start of epoch
-    public void setLastMeasured(int time){
+    public void setLastMeasured(long time){
         lastMeasuredTime = time;
     }
 
