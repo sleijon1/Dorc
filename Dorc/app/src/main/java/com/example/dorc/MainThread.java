@@ -20,7 +20,7 @@ public class MainThread extends Thread {
         super();
         this.surfaceHolder = surfaceHolder;
         this.gameView = gameView;
-
+        //TODO convert to lambda expression
         gameView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

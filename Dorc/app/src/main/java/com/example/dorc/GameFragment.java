@@ -22,6 +22,7 @@ public class GameFragment extends Fragment {
         final GameView gameView = rootView.findViewById(R.id.gameView);
 
         sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+        //TODO convert to lambda expression
         gameView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

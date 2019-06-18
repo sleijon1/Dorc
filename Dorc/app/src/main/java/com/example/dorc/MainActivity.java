@@ -29,15 +29,11 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         SharedViewModel sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
-
-        sharedViewModel.getSelected().observe(this, new Observer<PlayerHit>(){
-            @Override
-            public void onChanged(@Nullable PlayerHit updatedObject) {
-                Log.i(TAG, "onChanged: recieved freshObject");
-                if (updatedObject != null) {
+        sharedViewModel.getSelected().observe(this, (PlayerHit playerHit)-> {
+                Log.i(TAG, "onChanged: received freshObject");
+                if (playerHit != null) {
                     Log.i(TAG, "object was updated");
-                    //
-                }
+                //
             }
         });
 
