@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -40,6 +41,15 @@ public class MainActivity extends FragmentActivity {
                         int goldAmount = testPlayer.getGold().getAmount();
                         TextView goldDisplay = findViewById(R.id.playerGold);
                         goldDisplay.setText(String.valueOf(goldAmount));
+
+                        Orc currOrc = playerHit.getCurrentOrc();
+                        //TODO 5.0 is temp
+                        int calculatedDmg = currOrc.hit(5.0);
+                        Log.i(TAG, "cd:"+calculatedDmg);
+
+                        ProgressBar currHealth = findViewById(R.id.healthBar);
+                        int barHealth = currHealth.getProgress();
+                        currHealth.setProgress(barHealth - calculatedDmg);
                     }
                     Log.i(TAG, "object was updated");
                 //

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ProgressBar;
 
 import java.util.Calendar;
 
@@ -20,7 +21,7 @@ import static android.content.ContentValues.TAG;
 public class GameFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private View rootView;
-    PlayerHit playerHit = new PlayerHit();
+    PlayerHit playerHit;
     Context currCtx;
 
     @Override
@@ -31,20 +32,28 @@ public class GameFragment extends Fragment {
         final Animation animShake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
 
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.gameview_layout, container, false);
-        final GameView gameView = rootView.findViewById(R.id.gameView);
+        rootView = inflater.inflate(R.layout.gameview_layout, container, false);
+        final GameView gameView2 = rootView.findViewById(R.id.gameView);
 
         sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         //TODO convert to lambda expression
-        gameView.setOnTouchListener(new View.OnTouchListener() {
+        gameView2.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
+            public boolean onTouch(View gameView, MotionEvent event) {
+                //TODO
+                //Starting animation here so app feels responsive even though
+                //what happens on click should be decided by observer probably
                 gameView.startAnimation(animShake);
-                // Should only register one click a second
-                if(playerHit.hit){
-                    sharedViewModel.select(playerHit);
-                }
+
+                playerHit = new PlayerHit();
+                //Typecast to GameView to be able to use GameView methods
+                GameView currView = (GameView)gameView;
+
+                Orc currentOrc = currView.getCurrentOrc();
+                playerHit.setCurrentOrc(currentOrc);
+
+                sharedViewModel.select(playerHit);
+
                 // For visually impaired etc.
                 gameView.performClick();
                 Log.i(TAG,"registered touch from fraggy");

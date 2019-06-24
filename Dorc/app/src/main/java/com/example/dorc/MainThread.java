@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
+import android.widget.ProgressBar;
 
 public class MainThread extends Thread {
     private static final String TAG = "MainThread";
@@ -24,7 +25,7 @@ public class MainThread extends Thread {
         gameView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.i(TAG,"registered touch");
+                Log.i(TAG,"registered touch from mainthread");
                 return false;
             }
         });
