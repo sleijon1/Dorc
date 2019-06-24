@@ -81,4 +81,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
             retry = false;
         }
     }
+
+    public Orc getTestOrc(){
+        return testOrc;
+    }
 }

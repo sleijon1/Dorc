@@ -26,21 +26,27 @@ public class MainActivity extends FragmentActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        renderGold();
+
         setContentView(R.layout.activity_main);
 
         SharedViewModel sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
         sharedViewModel.getSelected().observe(this, (PlayerHit playerHit)-> {
                 Log.i(TAG, "onChanged: received freshObject");
                 if (playerHit != null) {
+                    if(playerHit.hit){
+                        testPlayer.getGold().increaseGold(20);
+
+                        int goldAmount = testPlayer.getGold().getAmount();
+                        TextView goldDisplay = findViewById(R.id.playerGold);
+                        goldDisplay.setText(String.valueOf(goldAmount));
+                    }
                     Log.i(TAG, "object was updated");
                 //
             }
         });
-
-
-        renderGold();
     }
-
+    //TODO convert to lambda expression
     public void renderGold() {
         new Thread(new Runnable() {
             public void run() {
