@@ -10,4 +10,5 @@
     <string name="gold_icon">Image icon for gold icons</string>
     <string name="player_gold">Number for players current amount of gold coins</string>
     <string name="orc_health_bar">Health bar for current orc opponent</string>
+    <string name="placeholder_gold_image">Placeholder for gold icon</string>
 </resources>
