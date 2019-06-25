@@ -1,34 +1,30 @@
 package com.example.dorc;
 
-//Class for keep all information regarding a current player hit
+//Class for keeping all information regarding a current player hit
 
 public class PlayerHit {
     boolean hit;
-    boolean crit;
-    boolean dodge;
-    boolean miss;
-    private long lastMeasuredTime = 0;
-    private Orc currentOrc;
+    private int damage;
+    private boolean finishingBlow;
 
     // Can only be hit for now to simplify
     public PlayerHit(){
         hit = true;
     }
 
-    public long getLastMeasured() {
-        return lastMeasuredTime;
+    public void setDamage(int dmg){
+        this.damage = dmg;
     }
 
-    public void setLastMeasured(long lastMeasuredTime) {
-        this.lastMeasuredTime = lastMeasuredTime;
+    public int getDamage(){
+        return this.damage;
     }
 
-    public void setCurrentOrc(Orc orc){
-        currentOrc = orc;
+    public void setFinishingBlow(){
+        finishingBlow = true;
     }
 
-    public Orc getCurrentOrc(){
-        return currentOrc;
+    public boolean getFinishingBlow(){
+        return finishingBlow;
     }
-
 }

@@ -90,4 +90,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     public Orc getCurrentOrc(){
         return testOrc;
     }
+
+    public void setCurrentOrc(Orc newOrc){
+        testOrc = newOrc;
+    }
 }

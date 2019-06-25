@@ -36,20 +36,21 @@ public class MainActivity extends FragmentActivity {
                 Log.i(TAG, "onChanged: received freshObject");
                 if (playerHit != null) {
                     if(playerHit.hit){
-                        testPlayer.getGold().increaseGold(20);
-
-                        int goldAmount = testPlayer.getGold().getAmount();
-                        TextView goldDisplay = findViewById(R.id.playerGold);
-                        goldDisplay.setText(String.valueOf(goldAmount));
-
-                        Orc currOrc = playerHit.getCurrentOrc();
-                        //TODO 5.0 is temp
-                        int calculatedDmg = currOrc.hit(5.0);
-                        Log.i(TAG, "cd:"+calculatedDmg);
 
                         ProgressBar currHealth = findViewById(R.id.healthBar);
-                        int barHealth = currHealth.getProgress();
-                        currHealth.setProgress(barHealth - calculatedDmg);
+                        TextView goldDisplay = findViewById(R.id.playerGold);
+
+                        if(playerHit.getFinishingBlow()){
+                            currHealth.setProgress(100);
+                        }else{
+                            testPlayer.getGold().increaseGold(20);
+                            int calculatedDmg = playerHit.getDamage();
+                            int barHealth = currHealth.getProgress();
+                            currHealth.setProgress(barHealth - calculatedDmg);
+                        }
+                        //TODO might have to put this earlier if delay is noticeable
+                        int goldAmount = testPlayer.getGold().getAmount();
+                        goldDisplay.setText(String.valueOf(goldAmount));
                     }
                     Log.i(TAG, "object was updated");
                 //

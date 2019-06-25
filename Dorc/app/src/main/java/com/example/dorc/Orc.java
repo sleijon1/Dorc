@@ -39,7 +39,7 @@ public class Orc {
         double percentDmg = baseDmg/maxHealth;
         double percentHealth = percentDmg*100;
         int rounded = (int) Math.round(percentHealth);
-        this.healthBar = this.healthBar - rounded;
+        this.healthBar = this.healthBar - (int) Math.round(baseDmg);
 
         return rounded;
     }

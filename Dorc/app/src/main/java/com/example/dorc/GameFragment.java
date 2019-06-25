@@ -22,22 +22,19 @@ public class GameFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private View rootView;
     PlayerHit playerHit;
-    Context currCtx;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Need to do more research on this if it can be null etc
-        currCtx = getActivity().getApplicationContext();
         final Animation animShake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
 
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.gameview_layout, container, false);
-        final GameView gameView2 = rootView.findViewById(R.id.gameView);
+        final GameView gameView = rootView.findViewById(R.id.gameView);
 
         sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         //TODO convert to lambda expression
-        gameView2.setOnTouchListener(new View.OnTouchListener() {
+        gameView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View gameView, MotionEvent event) {
                 //TODO
@@ -50,9 +47,20 @@ public class GameFragment extends Fragment {
                 GameView currView = (GameView)gameView;
 
                 Orc currentOrc = currView.getCurrentOrc();
-                playerHit.setCurrentOrc(currentOrc);
+                // TODO 5 is temp, should be set dynamically
+                playerHit.setDamage(currentOrc.hit(5.0));
+
+                if(currentOrc.getHealthBar() == 0){
+                   //TODO Remove orc
+                    playerHit.setFinishingBlow();
+                    //Resets hp if finishing blow since no new orc has been selected
+                    currentOrc.setHealthBar(currentOrc.maxHealth);
+                }
 
                 sharedViewModel.select(playerHit);
+
+
+                // if above means orc is dead gameView.spawnNew !
 
                 // For visually impaired etc.
                 gameView.performClick();
