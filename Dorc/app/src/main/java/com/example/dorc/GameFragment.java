@@ -34,11 +34,7 @@ public class GameFragment extends Fragment {
 
         sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         sharedViewModel.getSelectedOrc().observe(this, (String selectedOrc)-> {
-           switch(selectedOrc){
-               case "orcWarrior": break;
-               case "orcMage": break;
-               case "orcRogue": break;
-           }
+           gameView.updateOrc(selectedOrc);
             Log.i(TAG, "selectedOrc: " + selectedOrc);
         });
 

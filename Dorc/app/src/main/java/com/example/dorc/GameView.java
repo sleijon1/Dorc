@@ -49,6 +49,21 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     }
 
     public void update(){
+
+    }
+    //Take argument orc and update testOrc to newly selected orc
+    public void updateOrc(String selectedOrc){
+        switch(selectedOrc){
+            case "orcWarrior":
+                testOrc = new orcWarrior(BitmapFactory.decodeResource(getResources(), R.drawable.orcwarriorchar));
+                break;
+            case "orcMage":
+                testOrc = new orcMage(BitmapFactory.decodeResource(getResources(), R.drawable.orcmagechar));
+                break;
+            case "orcRogue":
+                testOrc = new orcRogue(BitmapFactory.decodeResource(getResources(), R.drawable.orcroguechar));
+                break;
+        }
     }
 
     @Override
@@ -62,7 +77,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcboytwo));
+        testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcwarriorchar));
         thread.setRunning(true);
         thread.start();
     }

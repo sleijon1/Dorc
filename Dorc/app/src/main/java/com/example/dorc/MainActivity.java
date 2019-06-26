@@ -107,10 +107,10 @@ public class MainActivity extends FragmentActivity {
                     wobble.start();
                     previouslySelected.setBackgroundResource(R.drawable.imageborder);
                     v.setBackgroundResource(R.drawable.borderselected);
-
-                    String selectedOrc = getResources().getResourceEntryName(v.getId());
-                    viewModel.select(selectedOrc);
                 }
+
+                String selectedOrc = getResources().getResourceEntryName(v.getId());
+                viewModel.select(selectedOrc);
                 previouslySelected = (ImageView) v;
             }
         });

@@ -15,7 +15,7 @@ public class Orc {
 
     public Orc(Bitmap bmp){
         image = bmp;
-        //Warrior default
+
         healthBar = 25;
         maxHealth = 25;
     }
