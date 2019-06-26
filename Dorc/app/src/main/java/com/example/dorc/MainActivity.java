@@ -51,6 +51,10 @@ public class MainActivity extends FragmentActivity {
         ImageView mageImage = findViewById(R.id.orcMage);
         ImageView rogueImage = findViewById(R.id.orcRogue);
 
+        //WARRIOR PRESELECTED
+        previouslySelected = warriorImage;
+        warriorImage.setBackgroundResource(R.drawable.borderselected);
+
         // ANIMATION TEXT
         ObjectAnimator colorAnim = ObjectAnimator.ofInt(goldDisplay, "textColor",
                 Color.YELLOW, Color.BLACK);
@@ -100,17 +104,17 @@ public class MainActivity extends FragmentActivity {
         v.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(previouslySelected == null){
-                    wobble.start();
-                    v.setBackgroundResource(R.drawable.borderselected);
-                }else if(!(v.getId() == previouslySelected.getId())){
+
+                if(!(v.getId() == previouslySelected.getId())){
                     wobble.start();
                     previouslySelected.setBackgroundResource(R.drawable.imageborder);
                     v.setBackgroundResource(R.drawable.borderselected);
+
+                    //Tell GameFragment
+                    String selectedOrc = getResources().getResourceEntryName(v.getId());
+                    viewModel.select(selectedOrc);
                 }
 
-                String selectedOrc = getResources().getResourceEntryName(v.getId());
-                viewModel.select(selectedOrc);
                 previouslySelected = (ImageView) v;
             }
         });

@@ -122,7 +122,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:progressDrawable="@drawable/progress_bar"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:id="@+id/healthBar"
             app:layout_constraintEnd_toEndOf="@+id/fragment"
             android:layout_marginEnd="40dp" android:layout_marginRight="40dp"
@@ -130,8 +130,8 @@
             app:layout_constraintStart_toStartOf="@+id/fragment" android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp" android:contentDescription="@string/orc_health_bar"
             android:progress="100"
-            android:max="100" android:indeterminate="false" android:layout_marginTop="10dp"
-            android:layout_marginBottom="270dp"/>
+            android:max="100" android:indeterminate="false" android:layout_marginTop="30dp"
+            android:layout_marginBottom="300dp"/>
     <ImageView
             android:src="@android:drawable/btn_star_big_on"
             android:layout_width="0dp"
