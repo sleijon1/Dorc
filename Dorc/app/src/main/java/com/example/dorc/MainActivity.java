@@ -1,5 +1,6 @@
 package com.example.dorc;
 
+import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.arch.lifecycle.Observer;
@@ -25,8 +26,10 @@ import java.util.Calendar;
 
 public class MainActivity extends FragmentActivity {
     Player testPlayer = new Player();
-
     private static final String TAG = "MainActivity";
+
+    //TODO Need for checking which orc opponent to be highlighted. (Might wanna change this)
+    ImageView previouslySelected = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +87,24 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void setImageListeners(ImageView v){
-        final Animation selectOrcShake = AnimationUtils.loadAnimation(this, R.anim.orcshake);
+        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(v,
+                "alpha", 0.4f, 1f);
+        fadeAnim.setDuration(500);
+        AnimatorSet wobble = new AnimatorSet();
+        wobble.playTogether(fadeAnim);
 
         v.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                v.startAnimation(selectOrcShake);
+                if(previouslySelected == null){
+                    wobble.start();
+                    v.setBackgroundResource(R.drawable.borderselected);
+                }else if(!(v.getId() == previouslySelected.getId())){
+                    wobble.start();
+                    previouslySelected.setBackgroundResource(R.drawable.imageborder);
+                    v.setBackgroundResource(R.drawable.borderselected);
+                }
+                previouslySelected = (ImageView) v;
             }
         });
     }
