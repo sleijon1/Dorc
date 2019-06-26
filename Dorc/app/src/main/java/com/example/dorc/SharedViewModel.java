@@ -7,13 +7,21 @@ import android.content.ClipData;
 
 public class SharedViewModel extends ViewModel {
     private final MutableLiveData<PlayerHit> selected = new MutableLiveData<PlayerHit>();
+    private final MutableLiveData<String> selectedOrc = new MutableLiveData<String>();
 
     public void select(PlayerHit playerHit){
         selected.setValue(playerHit);
+    }
+
+    public void select(String string){
+        selectedOrc.setValue(string);
     }
 
     public LiveData<PlayerHit> getSelected(){
         return selected;
     }
 
+    public LiveData<String> getSelectedOrc(){
+        return selectedOrc;
+    }
 }

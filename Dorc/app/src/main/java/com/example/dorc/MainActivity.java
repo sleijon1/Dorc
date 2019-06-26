@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -56,11 +57,8 @@ public class MainActivity extends FragmentActivity {
         colorAnim.setEvaluator(new ArgbEvaluator());
         colorAnim.setDuration(500);
 
-        // ANIMATION & LISTENERS SELECT ORC
-        setImageListeners(warriorImage);
-        setImageListeners(mageImage);
-        setImageListeners(rogueImage);
 
+        // Communication to game fragment
         SharedViewModel sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
         sharedViewModel.getSelected().observe(this, (PlayerHit playerHit)-> {
                 Log.i(TAG, "onChanged: received freshObject");
@@ -84,9 +82,15 @@ public class MainActivity extends FragmentActivity {
                 //
             }
         });
+
+        // ANIMATION & LISTENERS SELECT ORC
+        setImageListeners(warriorImage, sharedViewModel);
+        setImageListeners(mageImage, sharedViewModel);
+        setImageListeners(rogueImage, sharedViewModel);
+
     }
 
-    public void setImageListeners(ImageView v){
+    public void setImageListeners(ImageView v, SharedViewModel viewModel){
         ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(v,
                 "alpha", 0.4f, 1f);
         fadeAnim.setDuration(500);
@@ -103,6 +107,9 @@ public class MainActivity extends FragmentActivity {
                     wobble.start();
                     previouslySelected.setBackgroundResource(R.drawable.imageborder);
                     v.setBackgroundResource(R.drawable.borderselected);
+
+                    String selectedOrc = getResources().getResourceEntryName(v.getId());
+                    viewModel.select(selectedOrc);
                 }
                 previouslySelected = (ImageView) v;
             }

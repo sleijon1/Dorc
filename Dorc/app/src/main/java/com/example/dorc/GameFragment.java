@@ -33,6 +33,15 @@ public class GameFragment extends Fragment {
         final GameView gameView = rootView.findViewById(R.id.gameView);
 
         sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+        sharedViewModel.getSelectedOrc().observe(this, (String selectedOrc)-> {
+           switch(selectedOrc){
+               case "orcWarrior": break;
+               case "orcMage": break;
+               case "orcRogue": break;
+           }
+            Log.i(TAG, "selectedOrc: " + selectedOrc);
+        });
+
         //TODO convert to lambda expression
         gameView.setOnTouchListener(new View.OnTouchListener() {
             @Override
