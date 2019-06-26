@@ -113,8 +113,11 @@ public class MainActivity extends FragmentActivity {
                     //Tell GameFragment
                     String selectedOrc = getResources().getResourceEntryName(v.getId());
                     viewModel.select(selectedOrc);
-                }
 
+                    //Reset health bar if swap target
+                    ProgressBar currHealth = findViewById(R.id.healthBar);
+                    currHealth.setProgress(100);
+                }
                 previouslySelected = (ImageView) v;
             }
         });

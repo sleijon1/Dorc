@@ -43,5 +43,9 @@ public class Orc {
 
         return rounded;
     }
+
+    public Bitmap getImage(){
+        return image;
+    }
 }
 
