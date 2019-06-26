@@ -31,7 +31,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     public GameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-
         surfaceHolder.addCallback(this);
 
         thread = new MainThread(surfaceHolder, this);
@@ -70,7 +69,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            canvas.drawColor(Color.BLACK);
+            canvas.drawColor(Color.WHITE);
             testOrc.draw(canvas);
         }
     }
