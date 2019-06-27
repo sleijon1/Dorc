@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -24,7 +25,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
         thread = new MainThread(surfaceHolder, this);
         setFocusable(true);
-
     }
 
     // Because we call this from onTouchEvent, this code will be executed for both
@@ -48,6 +48,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
                 break;
             case "orcMage":
                 testOrc = new orcMage(BitmapFactory.decodeResource(getResources(), R.drawable.orcmagechar));
+                Log.i(TAG, "MAGE");
                 break;
             case "orcRogue":
                 testOrc = new orcRogue(BitmapFactory.decodeResource(getResources(), R.drawable.orcroguechar));
@@ -59,7 +60,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            canvas.drawColor(Color.WHITE);
+            canvas.drawColor(Color.BLACK);
             testOrc.draw(canvas);
         }
     }
