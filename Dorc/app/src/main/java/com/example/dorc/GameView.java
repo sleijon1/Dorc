@@ -4,30 +4,19 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
-import android.widget.EditText;
-import android.widget.TextView;
-import org.w3c.dom.Text;
-
-import java.util.Calendar;
-import java.util.Date;
 
 import static android.content.ContentValues.TAG;
-import static java.lang.String.valueOf;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     MainThread thread;
     private Orc testOrc;
     public SurfaceHolder surfaceHolder = getHolder();
-    //This player will not be created in gameView but is here for testing purposes
-
-
+    public boolean starting;
+    private boolean destroying = false;
 
     public GameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -50,6 +39,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     public void update(){
 
     }
+
     //Take argument orc and update testOrc to newly selected orc
     public void updateOrc(String selectedOrc){
         switch(selectedOrc){
@@ -76,9 +66,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcwarriorchar));
-        thread.setRunning(true);
-        thread.start();
+        Log.i(TAG, "surfaceCREATED AGAIN");
+        if(starting){
+            thread.setRunning(true);
+            testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcwarriorchar));
+            thread.start();
+        }else{
+            thread.setPaused(false);
+        }
     }
 
     @Override
@@ -89,18 +84,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         boolean retry = true;
-        while(retry){
-            try{
-                thread.setRunning(false);
-                thread.join();
-            }  catch(InterruptedException e){
-                e.printStackTrace();
+            while (retry) {
+                try {
+                    if(destroying){
+                        thread.setRunning(false);
+                        thread.join();
+                    }else{
+                        thread.setPaused(true);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                retry = false;
             }
-            retry = false;
-        }
+        Log.i(TAG, "waited successfully");
     }
 
-    // Returns the current battling orc for information like health
     public Orc getCurrentOrc(){
         return testOrc;
     }

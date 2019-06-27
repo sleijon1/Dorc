@@ -6,13 +6,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
-import android.widget.ProgressBar;
 
 public class MainThread extends Thread {
     private static final String TAG = "MainThread";
     private SurfaceHolder surfaceHolder;
     private GameView gameView;
     private boolean running;
+    private boolean paused;
     public static Canvas canvas;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -21,13 +21,10 @@ public class MainThread extends Thread {
         super();
         this.surfaceHolder = surfaceHolder;
         this.gameView = gameView;
-        //TODO convert to lambda expression
-        gameView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+
+        gameView.setOnTouchListener( (View vew, MotionEvent event) -> {
                 Log.i(TAG,"registered touch from mainthread");
                 return false;
-            }
         });
 
     }
@@ -35,20 +32,20 @@ public class MainThread extends Thread {
     @Override
     public void run() {
         while (running) {
-            canvas = null;
-
-
-            try {
-                canvas = this.surfaceHolder.lockCanvas();
-                synchronized (surfaceHolder) {
-                    this.gameView.update();
-                    this.gameView.draw(canvas);
-                    this.surfaceHolder.unlockCanvasAndPost(canvas);
+            while(!paused){
+                Log.i(TAG, "back in run");
+                canvas = null;
+                try {
+                    canvas = this.surfaceHolder.lockCanvas();
+                    synchronized (surfaceHolder) {
+                        this.gameView.update();
+                        this.gameView.draw(canvas);
+                        this.surfaceHolder.unlockCanvasAndPost(canvas);
+                    }
+                } catch (Exception e) {
+                    //Add error handling
                 }
-            } catch (Exception e) {
-                //Add error handling
             }
-
         }
     }
 
@@ -56,5 +53,8 @@ public class MainThread extends Thread {
         running = isRunning;
     }
 
+    public void setPaused(boolean isPaused) {
+        paused = isPaused;
+    }
 
 }

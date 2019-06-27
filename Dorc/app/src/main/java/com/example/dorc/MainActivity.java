@@ -8,17 +8,11 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.animation.DynamicAnimation;
-import android.support.animation.SpringAnimation;
-import android.support.animation.SpringForce;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,8 +23,8 @@ public class MainActivity extends FragmentActivity {
     Player testPlayer = new Player();
     private static final String TAG = "MainActivity";
 
-    //TODO Need for checking which orc opponent to be highlighted. (Might wanna change this)
     ImageView previouslySelected = null;
+    SharedViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +57,7 @@ public class MainActivity extends FragmentActivity {
 
 
         // Communication to game fragment
-        SharedViewModel sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
+        sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
         sharedViewModel.getSelected().observe(this, (PlayerHit playerHit)-> {
                 Log.i(TAG, "onChanged: received freshObject");
                 if (playerHit != null) {
@@ -78,7 +72,7 @@ public class MainActivity extends FragmentActivity {
                             int barHealth = currHealth.getProgress();
                             currHealth.setProgress(barHealth - calculatedDmg);
                         }
-                        //TODO might have to put this earlier if delay is noticeable
+                        //might have to put this earlier if delay is noticeable
                         int goldAmount = testPlayer.getGold().getAmount();
                         goldDisplay.setText(String.valueOf(goldAmount));
                     }
@@ -92,7 +86,15 @@ public class MainActivity extends FragmentActivity {
         setImageListeners(mageImage, sharedViewModel);
         setImageListeners(rogueImage, sharedViewModel);
 
+        sharedViewModel.select(true);
     }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        sharedViewModel.select(false);
+    }
+
 
     public void setImageListeners(ImageView v, SharedViewModel viewModel){
         ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(v,
@@ -101,14 +103,11 @@ public class MainActivity extends FragmentActivity {
         AnimatorSet wobble = new AnimatorSet();
         wobble.playTogether(fadeAnim);
 
-        v.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-
-                if(!(v.getId() == previouslySelected.getId())){
+        v.setOnClickListener( (View orcView) -> {
+                if(!(orcView.getId() == previouslySelected.getId())){
                     wobble.start();
                     previouslySelected.setBackgroundResource(R.drawable.imageborder);
-                    v.setBackgroundResource(R.drawable.borderselected);
+                    orcView.setBackgroundResource(R.drawable.borderselected);
 
                     //Tell GameFragment
                     String selectedOrc = getResources().getResourceEntryName(v.getId());
@@ -118,20 +117,15 @@ public class MainActivity extends FragmentActivity {
                     ProgressBar currHealth = findViewById(R.id.healthBar);
                     currHealth.setProgress(100);
                 }
-                previouslySelected = (ImageView) v;
-            }
+                previouslySelected = (ImageView) orcView;
         });
     }
 
-    //TODO convert to lambda expression
     public void renderGold() {
-        new Thread(new Runnable() {
-            public void run() {
+        new Thread( () -> {
                 while(true){
                     updateGold(false, testPlayer);
                 }
-            }
-
         }).start();
     }
 
@@ -145,14 +139,12 @@ public class MainActivity extends FragmentActivity {
             if (hitOrResume) {
                 //TODO needs to be accurately updated with hit value
                 testPlayer.getGold().increaseGold(1);
-                //Update visual value by chunk
             }else {
                 testPlayer.getGold().increaseGold(1);
             }
 
             Gold testGold = testPlayer.getGold();
             int goldAmount = testGold.getAmount();
-            Log.i(TAG, "curr gold: " + goldAmount);
             TextView goldDisplay = findViewById(R.id.playerGold);
             goldDisplay.setText(String.valueOf(goldAmount));
 
