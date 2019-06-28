@@ -1,21 +1,19 @@
 package com.example.dorc;
 
-import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.util.Calendar;
 
@@ -25,6 +23,7 @@ public class MainActivity extends FragmentActivity {
 
     ImageView previouslySelected = null;
     SharedViewModel sharedViewModel;
+    FragmentManager fragMan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +43,21 @@ public class MainActivity extends FragmentActivity {
         ImageView warriorImage = findViewById(R.id.orcWarrior);
         ImageView mageImage = findViewById(R.id.orcMage);
         ImageView rogueImage = findViewById(R.id.orcRogue);
+        ImageButton backpackBtn = findViewById(R.id.backpackBtn);
+
+        // ONCLICK FOR INTERFACE
+        backpackBtn.setOnClickListener( (View view) -> {
+            fadeAnimation(view);
+
+            LinearLayout fragContainer = findViewById(R.id.inv_frag_container);
+
+            fragMan = getSupportFragmentManager();
+            FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+            Fragment myFrag = new InventoryFragment();
+            fragTransaction.add(fragContainer.getId(), myFrag, "inventory_fragment");
+            fragTransaction.commit();
+        });
 
         //WARRIOR PRESELECTED
         previouslySelected = warriorImage;
@@ -81,6 +95,13 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
+        // LISTENS TO FRAGMENT CANCELLATIONS
+        sharedViewModel.getFragmentToCancel().observe(this, (Fragment fragment)-> {
+            if(fragment != null){
+                fragMan.beginTransaction().remove(fragment).commit();
+            }
+        });
+
         // ANIMATION & LISTENERS SELECT ORC
         setImageListeners(warriorImage, sharedViewModel);
         setImageListeners(mageImage, sharedViewModel);
@@ -96,16 +117,11 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-    public void setImageListeners(ImageView v, SharedViewModel viewModel){
-        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(v,
-                "alpha", 0.4f, 1f);
-        fadeAnim.setDuration(500);
-        AnimatorSet wobble = new AnimatorSet();
-        wobble.playTogether(fadeAnim);
 
+    public void setImageListeners(ImageView v, SharedViewModel viewModel){
         v.setOnClickListener( (View orcView) -> {
                 if(!(orcView.getId() == previouslySelected.getId())){
-                    wobble.start();
+                    fadeAnimation(orcView);
                     previouslySelected.setBackgroundResource(R.drawable.imageborder);
                     orcView.setBackgroundResource(R.drawable.borderselected);
 
@@ -119,6 +135,13 @@ public class MainActivity extends FragmentActivity {
                 }
                 previouslySelected = (ImageView) orcView;
         });
+    }
+
+    public void fadeAnimation(View viewToFade){
+        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(viewToFade,
+                "alpha", 0.4f, 1f);
+        fadeAnim.setDuration(500);
+        fadeAnim.start();
     }
 
     public void renderGold() {

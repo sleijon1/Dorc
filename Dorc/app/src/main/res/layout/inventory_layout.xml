@@ -4,16 +4,21 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             android:background="@android:color/transparent">
+                                             android:background="#99000000"
+                                             android:clickable="true"
+                                             android:focusable="true" android:id="@+id/parentView">
 
     <android.support.constraint.ConstraintLayout
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="0dp"
-            android:layout_height="0dp" android:layout_marginTop="200dp"
+            android:layout_height="0dp" android:layout_marginTop="150dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="20dp" android:layout_marginRight="20dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="200dp"
-            android:layout_marginLeft="20dp" android:layout_marginStart="20dp"
-            android:background="@android:color/darker_gray">
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="5dp" android:layout_marginRight="5dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="150dp"
+            android:layout_marginLeft="5dp" android:layout_marginStart="5dp"
+            android:background="@android:color/darker_gray" android:verticalScrollbarPosition="right"
+            android:id="@+id/childView">
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
