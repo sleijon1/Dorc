@@ -38,16 +38,16 @@ public class InventoryFragment extends Fragment {
     //Add inventory argument that cycles through the "game inventory"
     public void drawInventory(TableLayout tableLayout){
         TableRow currentRow = null;
-        //iv.setId(i);
+        Inventory playerInventory = MainActivity.testPlayer.getPlayerInventory();
 
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < playerInventory.currentlyHeldItems ; i++) {
             ImageView iv = new ImageView(getActivity().getApplicationContext());
-            iv.setImageDrawable(getResources().getDrawable(R.drawable.bagicon));
+            iv.setImageDrawable(getResources().getDrawable(playerInventory.getInvArray()[i].getIconId()));
             iv.setBackgroundResource(R.drawable.invimageborder);
             iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             tableLayout.setShrinkAllColumns(true);
 
-            if(i % 3 == 0) {
+            if(i % 6 == 0) {
                 // Create a new table row.
                 TableRow tableRow = new TableRow(getActivity().getApplicationContext());
                 // Set new table row layout parameters.
@@ -57,7 +57,7 @@ public class InventoryFragment extends Fragment {
 
                 currentRow = tableRow;
             }
-            currentRow.addView(iv, i%3);
+            currentRow.addView(iv, i%6);
         }
 
 

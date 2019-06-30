@@ -3,9 +3,11 @@ package com.example.dorc;
 public class Player {
     private long lastMeasuredTime = 0;
     private Gold currentGold = new Gold();
+    private Inventory playerInventory = new Inventory(16);
     //private Experience currentExperience;
     //private HashMap currentGear;
     public Player(){
+
      // Player is developed later. This is a class that should be instantiated when
      // a player connects with their google play account. The stats:gold, experience, gear etc.
      // should be gathered from a database when player logs in.
@@ -22,6 +24,10 @@ public class Player {
     // last measured time in milliseconds since start of epoch
     public void setLastMeasured(long time){
         lastMeasuredTime = time;
+    }
+
+    public Inventory getPlayerInventory(){
+        return playerInventory;
     }
 
 }

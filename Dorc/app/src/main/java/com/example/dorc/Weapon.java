@@ -1,21 +1,22 @@
 package com.example.dorc;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 public class Weapon {
     private int damage;
-    private Image icon;
+    private int iconId;
 
-    public Weapon(int dmg, Image icon){
+    public Weapon(int dmg, int iconId){
         damage = dmg;
-        this.icon = icon;
+        this.iconId = iconId;
     }
 
     public int getDamage(){
         return damage;
     }
 
-    public Image getIcon(){
-        return icon;
+    public int getIconId(){
+        return iconId;
     }
 }

@@ -47,5 +47,9 @@ public class Orc {
     public Bitmap getImage(){
         return image;
     }
+
+    public Weapon calculateLoot(){
+        return new FireSword(5, R.drawable.firesword);
+    }
 }
 

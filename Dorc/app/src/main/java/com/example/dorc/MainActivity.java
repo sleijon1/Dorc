@@ -15,10 +15,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.*;
 
+import java.io.InputStream;
 import java.util.Calendar;
 
 public class MainActivity extends FragmentActivity {
-    Player testPlayer = new Player();
+    public static Player testPlayer = new Player();
     private static final String TAG = "MainActivity";
 
     ImageView previouslySelected = null;
@@ -34,7 +35,6 @@ public class MainActivity extends FragmentActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         renderGold();
-
         setContentView(R.layout.activity_main);
 
         // FIND VIEWS
@@ -78,6 +78,13 @@ public class MainActivity extends FragmentActivity {
                     if(playerHit.hit){
 
                         if(playerHit.getFinishingBlow()){
+                            Weapon loot = playerHit.getLoot();
+                            Inventory playerInventory = testPlayer.getPlayerInventory();
+
+                            if(loot != null) {
+                                playerInventory.putInInventory(loot);
+                                playerHit.setLoot(null);
+                            }
                             currHealth.setProgress(100);
                             colorAnim.start();
                         }else{

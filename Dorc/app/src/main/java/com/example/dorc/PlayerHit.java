@@ -6,6 +6,7 @@ public class PlayerHit {
     boolean hit;
     private int damage;
     private boolean finishingBlow;
+    private Weapon loot;
 
     // Can only be hit for now to simplify
     public PlayerHit(){
@@ -26,5 +27,13 @@ public class PlayerHit {
 
     public boolean getFinishingBlow(){
         return finishingBlow;
+    }
+
+    public void setLoot(Weapon loot){
+        this.loot = loot;
+    }
+
+    public Weapon getLoot(){
+        return this.loot;
     }
 }
