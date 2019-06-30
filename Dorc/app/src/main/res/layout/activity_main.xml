@@ -27,12 +27,12 @@
             android:layout_height="0dp"
             android:id="@+id/orcWarrior"
             android:contentDescription="@string/warrior_btn"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="150dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/orcRogue"
             android:layout_marginTop="8dp" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/fragment" android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/fragment"
             android:background="@drawable/imageborder" android:scaleType="centerInside"/>
     <ImageButton
             android:src="@drawable/rogueweapon"

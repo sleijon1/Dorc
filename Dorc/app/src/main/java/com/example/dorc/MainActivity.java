@@ -134,7 +134,9 @@ public class MainActivity extends FragmentActivity {
 
                     //Tell GameFragment
                     String selectedOrc = getResources().getResourceEntryName(v.getId());
-                    viewModel.select(selectedOrc);
+                    if(viewModel != null){
+                        viewModel.select(selectedOrc);
+                    }
 
                     //Reset health bar if swap target
                     ProgressBar currHealth = findViewById(R.id.healthBar);
@@ -144,7 +146,7 @@ public class MainActivity extends FragmentActivity {
         });
     }
 
-    public void fadeAnimation(View viewToFade){
+    public static void fadeAnimation(View viewToFade){
         ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(viewToFade,
                 "alpha", 0.4f, 1f);
         fadeAnim.setDuration(500);

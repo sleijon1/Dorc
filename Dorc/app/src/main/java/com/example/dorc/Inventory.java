@@ -20,4 +20,8 @@ public class Inventory {
         return weapons;
     }
 
+    public int getTotalSpace(){
+        return space;
+    }
+
 }

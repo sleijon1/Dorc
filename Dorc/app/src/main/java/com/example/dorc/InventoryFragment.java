@@ -39,25 +39,41 @@ public class InventoryFragment extends Fragment {
     public void drawInventory(TableLayout tableLayout){
         TableRow currentRow = null;
         Inventory playerInventory = MainActivity.testPlayer.getPlayerInventory();
+        int inventorySpace = playerInventory.getTotalSpace();
 
-        for(int i = 0; i < playerInventory.currentlyHeldItems ; i++) {
-            ImageView iv = new ImageView(getActivity().getApplicationContext());
-            iv.setImageDrawable(getResources().getDrawable(playerInventory.getInvArray()[i].getIconId()));
-            iv.setBackgroundResource(R.drawable.invimageborder);
-            iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        for(int i = 0; i < inventorySpace ; i++) {
+            ImageButton iv = new ImageButton(getActivity().getApplicationContext());
+            iv.setBackgroundResource(R.drawable.invimageborder2);
+            iv.setScaleType(ImageButton.ScaleType.CENTER_INSIDE);
+            iv.setImageDrawable(getResources().getDrawable(R.drawable.fillerimginv));
             tableLayout.setShrinkAllColumns(true);
 
-            if(i % 6 == 0) {
+            iv.setTag(i);
+
+            if(i % 4 == 0) {
                 // Create a new table row.
                 TableRow tableRow = new TableRow(getActivity().getApplicationContext());
                 // Set new table row layout parameters.
-                TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT);
                 tableRow.setLayoutParams(layoutParams);
                 tableLayout.addView(tableRow);
 
                 currentRow = tableRow;
             }
-            currentRow.addView(iv, i%6);
+            currentRow.addView(iv, i%4);
+
+        }
+
+        for(int i = 0; i < playerInventory.currentlyHeldItems; i++){
+            ImageView iv = tableLayout.findViewWithTag(i);
+            iv.setImageDrawable(getResources().getDrawable(playerInventory.getInvArray()[i].getIconId()));
+            iv.setScaleType(ImageButton.ScaleType.CENTER_INSIDE);
+
+            iv.setOnClickListener( (View view) -> {
+                    MainActivity.fadeAnimation(view);
+                    //pop fragment or whatever
+            });
+
         }
 
 
