@@ -6,10 +6,11 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.*;
 
 import static android.content.ContentValues.TAG;
 
@@ -27,7 +28,7 @@ public class InventoryFragment extends Fragment {
             sharedViewModel.select(this);
         });
 
-        ConstraintLayout childConstraintLayout = parentConstraintLayout.findViewById(R.id.childViewInvt);
+        TableLayout childConstraintLayout = parentConstraintLayout.findViewById(R.id.childViewInvt);
 
         drawInventory(childConstraintLayout);
 
@@ -35,27 +36,31 @@ public class InventoryFragment extends Fragment {
     }
 
     //Add inventory argument that cycles through the "game inventory"
-    public void drawInventory(ConstraintLayout constraintLayout){
-        boolean itemDrawn = false;
-        ImageView previousImage = null;
+    public void drawInventory(TableLayout tableLayout){
+        TableRow currentRow = null;
+        //iv.setId(i);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 10; i++) {
             ImageView iv = new ImageView(getActivity().getApplicationContext());
             iv.setImageDrawable(getResources().getDrawable(R.drawable.bagicon));
-            iv.setId(i);
-            constraintLayout.addView(iv);
+            iv.setBackgroundResource(R.drawable.invimageborder);
+            iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            tableLayout.setShrinkAllColumns(true);
 
-            if(itemDrawn) {
-                ConstraintSet constraintSet = new ConstraintSet();
-                constraintSet.clone(constraintLayout);
-                constraintSet.connect(iv.getId(), ConstraintSet.LEFT, previousImage.getId(), ConstraintSet.LEFT, 250);
-                constraintSet.applyTo(constraintLayout);
+            if(i % 3 == 0) {
+                // Create a new table row.
+                TableRow tableRow = new TableRow(getActivity().getApplicationContext());
+                // Set new table row layout parameters.
+                TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                tableRow.setLayoutParams(layoutParams);
+                tableLayout.addView(tableRow);
+
+                currentRow = tableRow;
             }
-
-            previousImage = iv;
-            itemDrawn = true;
-
-            Log.i(TAG, "WE ARE MOST CERTAINLY IN HERE");
+            currentRow.addView(iv, i%3);
         }
+
+
+
     }
 }

@@ -7,18 +7,20 @@
                                              android:background="#99000000"
                                              android:clickable="true"
                                              android:focusable="true" android:id="@+id/parentViewInvt">
-
-    <android.support.constraint.ConstraintLayout
-            android:clickable="true"
-            android:focusable="true"
+    <ScrollView
             android:layout_width="0dp"
-            android:layout_height="0dp" android:layout_marginTop="150dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="5dp" android:layout_marginRight="5dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="150dp"
-            android:layout_marginLeft="5dp" android:layout_marginStart="5dp"
-            android:background="@android:color/darker_gray" android:verticalScrollbarPosition="right"
-            android:id="@+id/childViewInvt">
-
-    </android.support.constraint.ConstraintLayout>
+            android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="150dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="2dp" android:layout_marginStart="2dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="2dp" android:layout_marginRight="2dp" android:layout_marginBottom="150dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="0.0">
+        <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" android:background="@color/colorPrimary"
+                android:id="@+id/childViewInvt" android:clickable="true"
+        />
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
