@@ -55,7 +55,11 @@ public class GameFragment extends Fragment {
 
                 if(currentOrc.getHealthBar() == 0){
                     playerHit.setFinishingBlow();
-                    playerHit.setLoot(currentOrc.calculateLoot());
+
+                    LootTable lootTable = new LootTable(currentOrc);
+                    Gear loot = lootTable.calculateLoot();
+                    playerHit.setLoot(loot);
+
                     currentOrc.setHealthBar(currentOrc.maxHealth);
                 }
 

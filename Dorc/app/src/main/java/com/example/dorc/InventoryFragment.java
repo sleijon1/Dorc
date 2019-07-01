@@ -45,7 +45,7 @@ public class InventoryFragment extends Fragment {
             ImageButton iv = new ImageButton(getActivity().getApplicationContext());
             iv.setBackgroundResource(R.drawable.invimageborder2);
             iv.setScaleType(ImageButton.ScaleType.CENTER_INSIDE);
-            iv.setImageDrawable(getResources().getDrawable(R.drawable.fillerimginv));
+            iv.setImageResource(R.drawable.fillerimginv);
             tableLayout.setShrinkAllColumns(true);
 
             iv.setTag(i);
@@ -66,7 +66,7 @@ public class InventoryFragment extends Fragment {
 
         for(int i = 0; i < playerInventory.currentlyHeldItems; i++){
             ImageView iv = tableLayout.findViewWithTag(i);
-            iv.setImageDrawable(getResources().getDrawable(playerInventory.getInvArray()[i].getIconId()));
+            iv.setImageResource(playerInventory.getInvArray()[i].getIconId());
             iv.setScaleType(ImageButton.ScaleType.CENTER_INSIDE);
 
             iv.setOnClickListener( (View view) -> {

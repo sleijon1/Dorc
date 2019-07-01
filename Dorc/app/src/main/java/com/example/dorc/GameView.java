@@ -70,7 +70,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         Log.i(TAG, "surfaceCREATED AGAIN");
         if(starting){
             thread.setRunning(true);
-            testOrc = new Orc(BitmapFactory.decodeResource(getResources(), R.drawable.orcwarriorchar));
+            testOrc = new orcWarrior(BitmapFactory.decodeResource(getResources(), R.drawable.orcwarriorchar));
             thread.start();
         }else{
             thread.setPaused(false);

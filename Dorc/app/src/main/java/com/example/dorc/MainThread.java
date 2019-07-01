@@ -33,7 +33,6 @@ public class MainThread extends Thread {
     public void run() {
         while (running) {
             while(!paused){
-                Log.i(TAG, "back in run");
                 canvas = null;
                 try {
                     canvas = this.surfaceHolder.lockCanvas();

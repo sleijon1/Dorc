@@ -15,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.*;
 
-import java.io.InputStream;
 import java.util.Calendar;
 
 public class MainActivity extends FragmentActivity {
@@ -78,7 +77,7 @@ public class MainActivity extends FragmentActivity {
                     if(playerHit.hit){
 
                         if(playerHit.getFinishingBlow()){
-                            Weapon loot = playerHit.getLoot();
+                            Gear loot = playerHit.getLoot();
                             Inventory playerInventory = testPlayer.getPlayerInventory();
 
                             if(loot != null) {

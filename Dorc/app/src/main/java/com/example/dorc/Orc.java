@@ -1,10 +1,6 @@
 package com.example.dorc;
 
 import android.graphics.*;
-import android.support.design.widget.TabLayout;
-import android.util.Log;
-import android.view.SurfaceHolder;
-import android.widget.ProgressBar;
 
 
 public class Orc {
@@ -12,6 +8,11 @@ public class Orc {
     private int healthBar;
     private Bitmap image;
     private static final String TAG = "Orc.java";
+
+    int legendaryWeight;
+    int epicWeight;
+    int rareWeight;
+    int commonWeight;
 
     public Orc(Bitmap bmp){
         image = bmp;
@@ -48,8 +49,11 @@ public class Orc {
         return image;
     }
 
-    public Weapon calculateLoot(){
-        return new FireSword(5, R.drawable.firesword);
+    public void setWeights(int legendaryWeight, int epicWeight, int rareWeight, int commonWeight){
+        this.legendaryWeight = legendaryWeight;
+        this.epicWeight = epicWeight;
+        this.rareWeight = rareWeight;
+        this.commonWeight = commonWeight;
     }
 }
 

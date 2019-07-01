@@ -2,22 +2,22 @@ package com.example.dorc;
 
 public class Inventory {
     private int space;
-    private Weapon[] weapons = new Weapon[16];
+    private Gear[] gears = new Gear[16];
     public int currentlyHeldItems = 0;
 
     public Inventory(int space){
         this.space = space;
     }
 
-    public void putInInventory(Weapon weapon){
+    public void putInInventory(Gear gear){
         if(currentlyHeldItems < 16) {
-            weapons[currentlyHeldItems] = weapon;
+            gears[currentlyHeldItems] = gear;
             ++currentlyHeldItems;
         }
     }
 
-    public Weapon[] getInvArray(){
-        return weapons;
+    public Gear[] getInvArray(){
+        return gears;
     }
 
     public int getTotalSpace(){
