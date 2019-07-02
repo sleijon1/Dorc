@@ -3,16 +3,11 @@ package com.example.dorc;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-
-import static android.content.ContentValues.TAG;
 
 public class InventoryFragment extends Fragment {
 
@@ -28,9 +23,9 @@ public class InventoryFragment extends Fragment {
             sharedViewModel.select(this);
         });
 
-        TableLayout childConstraintLayout = parentConstraintLayout.findViewById(R.id.childViewInvt);
+        TableLayout childTableLayout = parentConstraintLayout.findViewById(R.id.childViewInvt);
 
-        drawInventory(childConstraintLayout);
+        drawInventory(childTableLayout);
 
         return rootView;
     }

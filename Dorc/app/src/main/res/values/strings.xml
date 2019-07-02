@@ -11,4 +11,8 @@
     <string name="player_gold">Number for players current amount of gold coins</string>
     <string name="orc_health_bar">Health bar for current orc opponent</string>
     <string name="placeholder_gold_image">Placeholder for gold icon</string>
+    <string name="player_weapon_btn">ImageButton for player weapon</string>
+    <string name="player_helmet_btn">ImageButton for player helmet</string>
+    <string name="player_chest_btn">ImageButton for player chestpiece</string>
+    <string name="player_offhand_btn">ImageButton for player offhand</string>
 </resources>

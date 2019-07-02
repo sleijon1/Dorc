@@ -43,8 +43,11 @@ public class MainActivity extends FragmentActivity {
         ImageView mageImage = findViewById(R.id.orcMage);
         ImageView rogueImage = findViewById(R.id.orcRogue);
         ImageButton backpackBtn = findViewById(R.id.backpackBtn);
+        ImageButton equipmentBtn = findViewById(R.id.equipmentBtn);
 
-        // ONCLICK FOR INTERFACE
+
+        // ONCLICKS FOR INTERFACE
+        // ONCLICK FOR INVENTORY
         backpackBtn.setOnClickListener( (View view) -> {
             fadeAnimation(view);
 
@@ -55,6 +58,20 @@ public class MainActivity extends FragmentActivity {
 
             Fragment myFrag = new InventoryFragment();
             fragTransaction.add(fragContainer.getId(), myFrag, "inventory_fragment");
+            fragTransaction.commit();
+        });
+
+        // ONCLICK FOR EQUIPMENT
+         equipmentBtn.setOnClickListener( (View view) -> {
+            fadeAnimation(view);
+
+            LinearLayout fragContainer = findViewById(R.id.inv_frag_container);
+
+            fragMan = getSupportFragmentManager();
+            FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+            Fragment myFrag = new EquipmentFragment();
+            fragTransaction.add(fragContainer.getId(), myFrag, "equipment fragment");
             fragTransaction.commit();
         });
 
