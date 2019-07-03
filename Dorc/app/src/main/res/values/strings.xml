@@ -15,4 +15,7 @@
     <string name="player_helmet_btn">ImageButton for player helmet</string>
     <string name="player_chest_btn">ImageButton for player chestpiece</string>
     <string name="player_offhand_btn">ImageButton for player offhand</string>
+    <string name="gear_image_dispaly">ImageView for displaying gear on item display fragments</string>
+    <string name="item_display_container">LinearLayout, container for item display fragments</string>
+    <string name="exit_item_display">X</string>
 </resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:background="#99000000"
+                                             android:clickable="true"
+                                             android:focusable="true" android:id="@+id/itemDisplayParent">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/itemDisplayChild" android:background="@color/design_default_color_primary"
+            android:clickable="true" android:focusable="true">
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@drawable/fillerimginv"
+                android:id="@+id/itemToDisplay"
+                android:background="@drawable/imageborder" android:scaleType="centerInside"
+                android:layout_marginStart="20dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="20dp" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="110dp" app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="140dp" app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/gear_image_dispaly"/>
+        <Button
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/exitItemDisplay" app:layout_constraintStart_toEndOf="@+id/itemToDisplay"
+                android:layout_marginStart="50dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="50dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" android:text="@string/exit_item_display"
+                android:background="@drawable/imageborder" android:layout_marginBottom="155dp"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

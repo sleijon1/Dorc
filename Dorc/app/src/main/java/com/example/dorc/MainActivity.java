@@ -64,7 +64,6 @@ public class MainActivity extends FragmentActivity {
         // ONCLICK FOR EQUIPMENT
          equipmentBtn.setOnClickListener( (View view) -> {
             fadeAnimation(view);
-
             LinearLayout fragContainer = findViewById(R.id.inv_frag_container);
 
             fragMan = getSupportFragmentManager();
@@ -138,7 +137,6 @@ public class MainActivity extends FragmentActivity {
         super.onPause();
         sharedViewModel.select(false);
     }
-
 
 
     public void setImageListeners(ImageView v, SharedViewModel viewModel){

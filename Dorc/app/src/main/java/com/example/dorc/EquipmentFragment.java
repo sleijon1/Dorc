@@ -18,12 +18,12 @@ public class EquipmentFragment extends Fragment {
 
         SharedViewModel sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
 
-        parentConstraintLayout.setOnClickListener((View view)-> {
-            sharedViewModel.select(this);
-        });
+        parentConstraintLayout.setOnClickListener( view ->
+            sharedViewModel.select(this, true)
+        );
 
+        BasicSword testGear = new BasicSword();
         ConstraintLayout childConstraintLayout = parentConstraintLayout.findViewById(R.id.childViewEq);
-
 
         return rootView;
     }

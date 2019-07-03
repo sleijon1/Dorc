@@ -30,4 +30,8 @@ public class Player {
         return playerInventory;
     }
 
+    public Gear getPlayerInventory(int index){
+        return playerInventory.getInvArray(index);
+    }
+
 }

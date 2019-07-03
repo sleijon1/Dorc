@@ -20,6 +20,10 @@ public class Inventory {
         return gears;
     }
 
+    public Gear getInvArray(int index){
+        return gears[index];
+    }
+
     public int getTotalSpace(){
         return space;
     }
