@@ -16,9 +16,10 @@ import static android.content.ContentValues.TAG;
 public class ItemDisplayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
         View rootView = inflater.inflate(R.layout.item_display, container, false);
 
-        ConstraintLayout parentConstraintLayout = rootView.findViewById(R.id.itemDisplayParent);
+        //ConstraintLayout parentConstraintLayout = rootView.findViewById(R.id.itemDisplayParent);
 
         SharedViewModel sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
 
@@ -33,8 +34,6 @@ public class ItemDisplayFragment extends Fragment {
            iv.setImageResource(gear.getIconId());
 
         });
-
-        ConstraintLayout childConstraintLayout = parentConstraintLayout.findViewById(R.id.itemDisplayChild);
 
         return rootView;
     }

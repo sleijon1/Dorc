@@ -18,4 +18,7 @@
     <string name="gear_image_dispaly">ImageView for displaying gear on item display fragments</string>
     <string name="item_display_container">LinearLayout, container for item display fragments</string>
     <string name="exit_item_display">X</string>
+    <string name="item_name_placeholder">Item Name</string>
+    <string name="item_rarity_placeholder">Item Rarity</string>
+    <string name="item_damage_placeholder">Item Damage</string>
 </resources>
