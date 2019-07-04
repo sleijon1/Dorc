@@ -21,4 +21,8 @@
     <string name="item_name_placeholder">Item Name</string>
     <string name="item_rarity_placeholder">Item Rarity</string>
     <string name="item_damage_placeholder">Item Damage</string>
+    <string name="legendary_rarity"><font fgcolor="#d96200">LEGENDARY</font></string>
+    <string name="epic_rarity"><font fgcolor="#6a1883">EPIC</font></string>
+    <string name="rare_rarity"><font fgcolor="#005db0">RARE</font></string>
+    <string name="common_rarity"><font fgcolor="#30000000">COMMON</font></string>
 </resources>

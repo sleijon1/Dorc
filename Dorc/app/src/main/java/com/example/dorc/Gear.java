@@ -12,12 +12,14 @@ import static android.content.ContentValues.TAG;
 public class Gear {
     private int damage;
     private int iconId;
+    private String name;
     public String rarity;
     private ImageButton btn;
 
-    public Gear(int dmg, int iconId){
+    public Gear(int dmg, int iconId, String name){
         damage = dmg;
         this.iconId = iconId;
+        this.name = name;
     }
 
     public int getDamage(){
@@ -28,4 +30,10 @@ public class Gear {
         return iconId;
     }
 
+    public String getName(){return name;
+    }
+
+    public String getRarity(){
+        return rarity;
+    }
 }
