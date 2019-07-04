@@ -25,4 +25,6 @@
     <string name="epic_rarity"><font fgcolor="#6a1883">EPIC</font></string>
     <string name="rare_rarity"><font fgcolor="#005db0">RARE</font></string>
     <string name="common_rarity"><font fgcolor="#30000000">COMMON</font></string>
+    <string name="EQUIP_btn">EQUIP</string>
+    <string name="sell_btn">SELL</string>
 </resources>
