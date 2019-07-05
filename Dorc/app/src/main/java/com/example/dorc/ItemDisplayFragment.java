@@ -12,14 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 
 import static android.content.ContentValues.TAG;
 
 public class ItemDisplayFragment extends Fragment {
+    boolean inventory;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
@@ -35,11 +34,19 @@ public class ItemDisplayFragment extends Fragment {
                 sharedViewModel.select(this)
         );
 
+        // WHERE ARE WE BEING CALLED FROM
+        // TODO CHECK FOR NULL
+        inventory = getArguments().getString("caller").equals("inventory");
+
         // FIND VIEWS
         ImageView iv = rootView.findViewById(R.id.itemToDisplay);
         EditText itemName = rootView.findViewById(R.id.itemName);
         TextView itemRarity = rootView.findViewById(R.id.itemRarity);
         TextView itemDamage = rootView.findViewById(R.id.itemDamage);
+
+        // FIND BUTTON VIEWS
+        Button equipButton = rootView.findViewById(R.id.equipBtn);
+        Button sellButton = rootView.findViewById(R.id.sellBtn);
 
         sharedViewModel.getGearToDisplay().observe(this, gear -> {
            iv.setImageResource(gear.getIconId());
@@ -68,8 +75,30 @@ public class ItemDisplayFragment extends Fragment {
            itemRarity.setText(rarityDisplay);
            itemDamage.setText(damageConc);
 
-
+           if(inventory) {
+               if (gear instanceof BasicOffhand) {
+                   equipButton.setOnClickListener((View view) -> {
+                       MainActivity.testPlayer.getItemSet().setGear((BasicOffhand) gear);
+                   });
+               } else if (gear instanceof BasicHelmet) {
+                   equipButton.setOnClickListener((View view) -> {
+                       MainActivity.testPlayer.getItemSet().setGear((BasicHelmet) gear);
+                   });
+               } else if (gear instanceof BasicChestpiece) {
+                   equipButton.setOnClickListener((View view) -> {
+                       MainActivity.testPlayer.getItemSet().setGear((BasicChestpiece) gear);
+                   });
+               } else {
+                   equipButton.setOnClickListener((View view) -> {
+                       MainActivity.testPlayer.getItemSet().setGear((BasicWeapon) gear);
+                   });
+               }
+           }else{
+               equipButton.setText(R.string.upgrade_btn);
+               //TODO upgrade functionality
+           }
         });
+
 
         return rootView;
     }

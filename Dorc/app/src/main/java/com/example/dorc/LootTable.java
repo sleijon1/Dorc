@@ -8,9 +8,9 @@ import java.util.Random;
 import static android.content.ContentValues.TAG;
 
 public class LootTable {
-    private static BasicSword basicSword = new BasicSword();
+    private static BasicWeapon basicWeapon = new BasicWeapon();
     private static BasicChestpiece basicChestpiece = new BasicChestpiece();
-    private static BasicShield basicShield = new BasicShield();
+    private static BasicOffhand basicOffhand = new BasicOffhand();
     private static BasicHelmet basicHelmet = new BasicHelmet();
 
     private Gear[] rareGear = new Gear[1];
@@ -26,8 +26,8 @@ public class LootTable {
             // This needs to be changed in the future to be dynamically added somehow
             // So that new items are handled effectively without digging in this code.
             // Possible Component system from unity...
-            commonGear[0] = basicSword;
-            legendaryGear[0] = basicShield;
+            commonGear[0] = basicWeapon;
+            legendaryGear[0] = basicOffhand;
             rareGear[0] = basicHelmet;
             epicGear[0] = basicChestpiece;
 

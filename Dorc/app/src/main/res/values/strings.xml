@@ -27,4 +27,5 @@
     <string name="common_rarity"><font fgcolor="#30000000">COMMON</font></string>
     <string name="EQUIP_btn">EQUIP</string>
     <string name="sell_btn">SELL</string>
+    <string name="upgrade_btn">UPGRADE</string>
 </resources>

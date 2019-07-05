@@ -102,8 +102,13 @@ public class InventoryFragment extends Fragment {
         LinearLayout fragContainer = rootView.findViewById(R.id.itemDisplayContainer);
         FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
-        Fragment myFrag = new ItemDisplayFragment();
-        fragTransaction.add(fragContainer.getId(), myFrag, "item display fragment");
+        Fragment itemDisplayFragment = new ItemDisplayFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("caller", "inventory");
+        itemDisplayFragment.setArguments(bundle);
+
+        fragTransaction.add(fragContainer.getId(), itemDisplayFragment, "item display fragment");
         fragTransaction.commit();
         childTableLayout.setAlpha((float)0.5);
 
@@ -111,7 +116,9 @@ public class InventoryFragment extends Fragment {
             ImageButton iv = childTableLayout.findViewWithTag(i);
             iv.setClickable(false);
         }
-        sharedViewModel.select(playerInventory.getInvArray((int)view.getTag()));
+
+        Gear currentGear = playerInventory.getInvArray((int)view.getTag());
+        sharedViewModel.select(currentGear);
     }
 
 

@@ -1,7 +1,7 @@
 package com.example.dorc;
 
-public class BasicSword extends Gear {
-    public BasicSword(){
+public class BasicWeapon extends Gear {
+    public BasicWeapon(){
         super(5, R.drawable.firesword, "Basic Sword");
         rarity = "COMMON";
     }

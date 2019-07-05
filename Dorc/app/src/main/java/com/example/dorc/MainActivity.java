@@ -72,6 +72,7 @@ public class MainActivity extends FragmentActivity {
             Fragment myFrag = new EquipmentFragment();
             fragTransaction.add(fragContainer.getId(), myFrag, "equipment fragment");
             fragTransaction.commit();
+
         });
 
         //WARRIOR PRESELECTED

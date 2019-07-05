@@ -56,4 +56,15 @@
                 android:layout_marginBottom="140dp" app:layout_constraintBottom_toBottomOf="parent"
                 android:contentDescription="@string/player_offhand_btn"/>
     </android.support.constraint.ConstraintLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/itemDisplayContainer"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toTopOf="@+id/childViewEq"
+            app:layout_constraintBottom_toBottomOf="@+id/childViewEq"
+            app:layout_constraintEnd_toEndOf="@+id/childViewEq" app:layout_constraintStart_toStartOf="@+id/childViewEq"
+            android:layout_marginStart="16dp" android:layout_marginTop="16dp" android:layout_marginEnd="16dp">
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
