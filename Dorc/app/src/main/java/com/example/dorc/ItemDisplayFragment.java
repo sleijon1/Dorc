@@ -79,18 +79,22 @@ public class ItemDisplayFragment extends Fragment {
                if (gear instanceof BasicOffhand) {
                    equipButton.setOnClickListener((View view) -> {
                        MainActivity.testPlayer.getItemSet().setGear((BasicOffhand) gear);
+                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_o, Toast.LENGTH_SHORT).show();
                    });
                } else if (gear instanceof BasicHelmet) {
                    equipButton.setOnClickListener((View view) -> {
                        MainActivity.testPlayer.getItemSet().setGear((BasicHelmet) gear);
+                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_h, Toast.LENGTH_SHORT).show();
                    });
                } else if (gear instanceof BasicChestpiece) {
                    equipButton.setOnClickListener((View view) -> {
                        MainActivity.testPlayer.getItemSet().setGear((BasicChestpiece) gear);
+                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_c, Toast.LENGTH_SHORT).show();
                    });
                } else {
                    equipButton.setOnClickListener((View view) -> {
                        MainActivity.testPlayer.getItemSet().setGear((BasicWeapon) gear);
+                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_w, Toast.LENGTH_SHORT).show();
                    });
                }
            }else{

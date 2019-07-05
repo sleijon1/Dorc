@@ -28,4 +28,8 @@
     <string name="EQUIP_btn">EQUIP</string>
     <string name="sell_btn">SELL</string>
     <string name="upgrade_btn">UPGRADE</string>
+    <string name="equipped_c">Equipped Chestpiece!</string>
+    <string name="equipped_h">Equipped Headgear!</string>
+    <string name="equipped_w">Equipped Weapon!</string>
+    <string name="equipped_o">Equipped Off-hand!</string>
 </resources>
