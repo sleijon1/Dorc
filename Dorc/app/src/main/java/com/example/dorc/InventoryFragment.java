@@ -34,23 +34,31 @@ public class InventoryFragment extends Fragment {
 
         fragMan = getChildFragmentManager();
 
-        sharedViewModel.getItemDisplay().observe(this, (ItemDisplayFragment fragment) -> {
-                if(fragment != null){
-                    fragMan.beginTransaction().remove(fragment).commit();
-                 }
-                childTableLayout.setAlpha(1);
-
-                for(int i = 0; i < playerInventory.currentlyHeldItems; i++){
-                    ImageButton iv = childTableLayout.findViewWithTag(i);
-                    iv.setClickable(true);
-                }
-        });
-
         parentConstraintLayout.setOnClickListener( view -> sharedViewModel.select(this, true));
 
         childTableLayout = parentConstraintLayout.findViewById(R.id.childViewInvt);
 
 
+        sharedViewModel.getItemDisplay().observe(this, (ItemDisplayFragment fragment) -> {
+            if(fragment != null){
+                fragMan.beginTransaction().remove(fragment).commit();
+            }
+            childTableLayout.setAlpha(1);
+
+            for(int i = 0; i< playerInventory.getTotalSpace(); i++){
+                ImageButton iv = childTableLayout.findViewWithTag(i);
+                iv.setImageResource(R.drawable.fillerimginv);
+            }
+            for(int i = 0; i < playerInventory.currentlyHeldItems; i++){
+                ImageButton iv = childTableLayout.findViewWithTag(i);
+                iv.setClickable(true);
+                Gear item = playerInventory.getInvArray(i);
+                iv.setImageResource(item.getIconId());
+                Log.i(TAG, "current item" + item);
+            }
+
+
+        });
 
         drawInventory(childTableLayout);
 
