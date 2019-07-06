@@ -22,6 +22,7 @@ public class InventoryFragment extends Fragment {
     Inventory playerInventory;
     ConstraintLayout parentConstraintLayout;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         rootView = inflater.inflate(R.layout.inventory_layout, container, false);

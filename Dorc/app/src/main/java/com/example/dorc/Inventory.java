@@ -26,8 +26,8 @@ public class Inventory {
         return gears.get(index);
     }
 
-    public void removeItem(int index){
-        gears.remove(index);
+    public void removeItem(Gear gear){
+        gears.remove(gear);
         currentlyHeldItems = gears.size();
     }
 

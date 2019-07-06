@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.v4.app.Fragment;
+import android.widget.ImageButton;
 
 public class SharedViewModel extends ViewModel {
     private final MutableLiveData<PlayerHit> selected = new MutableLiveData<PlayerHit>();
@@ -14,8 +15,11 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<Gear> gearToDisplay = new MutableLiveData<>();
     private final MutableLiveData<ItemDisplayFragment> cancelFrag = new MutableLiveData<>();
     private final MutableLiveData<ItemSet> playerGear = new MutableLiveData<>();
+    private final MutableLiveData<ImageButton>  imgBtn = new MutableLiveData<>();
 
     public void select(ItemSet itemSet){playerGear.setValue(itemSet);}
+
+    public void select(ImageButton ib){imgBtn.setValue(ib);}
 
     public void select(PlayerHit playerHit){
         selected.setValue(playerHit);
@@ -38,6 +42,8 @@ public class SharedViewModel extends ViewModel {
     public void select(ItemDisplayFragment fragment){ cancelFrag.setValue(fragment);}
 
     public void select(Gear toDisplay){ gearToDisplay.setValue(toDisplay); }
+
+    public LiveData<ImageButton> getImgBtn(){return imgBtn;}
 
     public LiveData<ItemSet> getItemSet(){return playerGear;}
 

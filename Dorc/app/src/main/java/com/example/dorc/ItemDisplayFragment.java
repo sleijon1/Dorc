@@ -29,11 +29,6 @@ public class ItemDisplayFragment extends Fragment {
 
         SharedViewModel sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
 
-        Button exitButton = rootView.findViewById(R.id.exitItemDisplay);
-
-        exitButton.setOnClickListener( view ->
-                sharedViewModel.select(this)
-        );
 
         // WHERE ARE WE BEING CALLED FROM
         // TODO CHECK FOR NULL
@@ -48,6 +43,11 @@ public class ItemDisplayFragment extends Fragment {
         // FIND BUTTON VIEWS
         Button equipButton = rootView.findViewById(R.id.equipBtn);
         Button sellButton = rootView.findViewById(R.id.sellBtn);
+        Button exitButton = rootView.findViewById(R.id.exitItemDisplay);
+
+        exitButton.setOnClickListener( view ->
+                sharedViewModel.select(this)
+        );
 
         sharedViewModel.getGearToDisplay().observe(this, gear -> {
            iv.setImageResource(gear.getIconId());
@@ -78,27 +78,18 @@ public class ItemDisplayFragment extends Fragment {
 
            if(inventory) {
                Inventory playerInventory = MainActivity.testPlayer.getPlayerInventory();
-               if (gear instanceof BasicOffhand) {
-                   equipButton.setOnClickListener((View view) -> {
-                       MainActivity.testPlayer.getItemSet().setGear((BasicOffhand) gear);
-                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_o, Toast.LENGTH_SHORT).show();
-                   });
-               } else if (gear instanceof BasicHelmet) {
-                   equipButton.setOnClickListener((View view) -> {
-                       MainActivity.testPlayer.getItemSet().setGear((BasicHelmet) gear);
-                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_h, Toast.LENGTH_SHORT).show();
-                   });
-               } else if (gear instanceof BasicChestpiece) {
-                   equipButton.setOnClickListener((View view) -> {
-                       MainActivity.testPlayer.getItemSet().setGear((BasicChestpiece) gear);
-                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_c, Toast.LENGTH_SHORT).show();
-                   });
-               } else {
-                   equipButton.setOnClickListener((View view) -> {
-                       MainActivity.testPlayer.getItemSet().setGear((BasicWeapon) gear);
-                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_w, Toast.LENGTH_SHORT).show();
-                   });
-               }
+               ItemSet playerSet = MainActivity.testPlayer.getItemSet();
+
+               equipButton.setOnClickListener((View view) -> {
+                   Gear oldGear = playerSet.setGear(gear);
+                   Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_o, Toast.LENGTH_SHORT).show();
+                   if(oldGear != null){
+                       playerInventory.getInvArray().set(playerInventory.getInvArray().indexOf(gear), oldGear);
+                   }else{
+                       playerInventory.removeItem(gear);
+                   }
+               });
+
            }else{
                equipButton.setText(R.string.upgrade_btn);
                //TODO upgrade functionality
