@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -56,16 +57,16 @@ public class ItemDisplayFragment extends Fragment {
 
             switch(rarity){
                case "LEGENDARY":
-                   coloredRarity.setSpan(new ForegroundColorSpan(getResources().getColor(android.R.color.holo_orange_dark)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                   coloredRarity.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity().getApplicationContext(), android.R.color.holo_orange_dark)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                    break;
                case "EPIC":
-                   coloredRarity.setSpan(new ForegroundColorSpan(getResources().getColor(android.R.color.holo_purple)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                   coloredRarity.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity().getApplicationContext(), android.R.color.holo_purple)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                    break;
                case "RARE":
-                   coloredRarity.setSpan(new ForegroundColorSpan(getResources().getColor(android.R.color.holo_blue_light)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                   coloredRarity.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity().getApplicationContext(), android.R.color.holo_blue_light)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                    break;
                case "COMMON":
-                   coloredRarity.setSpan(new ForegroundColorSpan(getResources().getColor(android.R.color.darker_gray)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                   coloredRarity.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity().getApplicationContext(), android.R.color.darker_gray)), 0,rarity.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                    break;
            }
 
@@ -76,6 +77,7 @@ public class ItemDisplayFragment extends Fragment {
            itemDamage.setText(damageConc);
 
            if(inventory) {
+               Inventory playerInventory = MainActivity.testPlayer.getPlayerInventory();
                if (gear instanceof BasicOffhand) {
                    equipButton.setOnClickListener((View view) -> {
                        MainActivity.testPlayer.getItemSet().setGear((BasicOffhand) gear);

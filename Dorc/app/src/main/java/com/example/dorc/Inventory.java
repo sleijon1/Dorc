@@ -1,8 +1,10 @@
 package com.example.dorc;
 
+import java.util.ArrayList;
+
 public class Inventory {
     private int space;
-    private Gear[] gears = new Gear[16];
+    private ArrayList<Gear> gears = new ArrayList<>(16);
     public int currentlyHeldItems = 0;
 
     public Inventory(int space){
@@ -11,17 +13,22 @@ public class Inventory {
 
     public void putInInventory(Gear gear){
         if(currentlyHeldItems < 16) {
-            gears[currentlyHeldItems] = gear;
-            ++currentlyHeldItems;
+            gears.add(gear);
+            currentlyHeldItems = gears.size();
         }
     }
 
-    public Gear[] getInvArray(){
+    public ArrayList<Gear> getInvArray(){
         return gears;
     }
 
     public Gear getInvArray(int index){
-        return gears[index];
+        return gears.get(index);
+    }
+
+    public void removeItem(int index){
+        gears.remove(index);
+        currentlyHeldItems = gears.size();
     }
 
     public int getTotalSpace(){

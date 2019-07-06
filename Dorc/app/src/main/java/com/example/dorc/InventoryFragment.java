@@ -87,10 +87,12 @@ public class InventoryFragment extends Fragment {
 
         for(int i = 0; i < playerInventory.currentlyHeldItems; i++){
             Gear item = playerInventory.getInvArray(i);
-            ImageButton iv = tableLayout.findViewWithTag(i);
-            iv.setImageResource(item.getIconId());
-            iv.setScaleType(ImageButton.ScaleType.CENTER_INSIDE);
-            iv.setOnClickListener(this::setButton);
+            if(item != null) {
+                ImageButton iv = tableLayout.findViewWithTag(i);
+                iv.setImageResource(item.getIconId());
+                iv.setScaleType(ImageButton.ScaleType.CENTER_INSIDE);
+                iv.setOnClickListener(this::setButton);
+            }
         }
 
 
