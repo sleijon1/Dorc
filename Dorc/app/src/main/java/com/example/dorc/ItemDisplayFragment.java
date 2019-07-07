@@ -72,7 +72,7 @@ public class ItemDisplayFragment extends Fragment {
 
            String rarityConc = getString(R.string.item_rarity_placeholder) + ": ";
            CharSequence rarityDisplay = TextUtils.concat(SpannableString.valueOf(rarityConc), coloredRarity);
-           String damageConc = getString(R.string.item_damage_placeholder) + ": " + gear.getDamage();
+           String damageConc = getString(R.string.item_damage_placeholder) + ": " + gear.getStats().get("damage");
            itemRarity.setText(rarityDisplay);
            itemDamage.setText(damageConc);
 

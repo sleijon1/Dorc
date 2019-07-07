@@ -3,7 +3,7 @@ package com.example.dorc;
 import android.graphics.Bitmap;
 
 public class orcWarrior extends Orc {
-    private double block = 0.5;
+    private double block = 0.8;
     public orcWarrior(Bitmap bitmap){
         super(bitmap);
         setDropWeights();
@@ -19,15 +19,31 @@ public class orcWarrior extends Orc {
 
     }
 
-    public int hit(double dmg){
+    public int hit(){
+        double dmg = 0;
         BasicWeapon playerWeapon = MainActivity.testPlayer.getItemSet().getWeapon();
         if(playerWeapon != null){
-            Integer rawDamage = playerWeapon.getStats().get("damage");
-            if(rawDamage != null){
-                dmg = dmg + rawDamage;
+            if(!playerWeapon.getStats().containsKey("armor_pen")){
+                if(Math.random() < block){
+                    dmg = 0;
+                }else{
+                    dmg = super.getPlayerRawDmg();
+                }
+            }else{
+                int armorPen = playerWeapon.getStats().get("armor_pen");
+                int armorPenPercent = armorPen/10;
+
+                if(armorPenPercent > block){
+                    dmg = super.getPlayerRawDmg();
+                }else {
+                    if(Math.random() < block - armorPenPercent){
+                        dmg = 0;
+                    }else {
+                        dmg = super.getPlayerRawDmg();
+                    }
+                }
             }
         }
-
-        return super.hit(dmg);
+        return super.dealDamage(dmg);
     }
 }

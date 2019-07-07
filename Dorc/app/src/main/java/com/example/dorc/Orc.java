@@ -33,12 +33,27 @@ public class Orc {
         return healthBar;
     }
 
+    public double getPlayerRawDmg() {
+        double baseDmg = 5.0;
+        BasicWeapon playerWeapon = MainActivity.testPlayer.getItemSet().getWeapon();
+        if (playerWeapon != null) {
+            Integer rawDamage = playerWeapon.getStats().get("damage");
+            if (rawDamage != null) {
+                baseDmg = baseDmg + rawDamage;
+            }
+        }
+        return baseDmg;
+    }
+
+    //TODO might want to handle this differently
+    public int hit(){return 0;}
+
     //Will get a lot more complex with spells, dodges, gear etc.
-    public int hit(double baseDmg){
-        double percentDmg = baseDmg/maxHealth;
+    public int dealDamage(double dmg){
+        double percentDmg = dmg/maxHealth;
         double percentHealth = percentDmg*100;
         int rounded = (int) Math.round(percentHealth);
-        this.healthBar = this.healthBar - (int) Math.round(baseDmg);
+        this.healthBar = this.healthBar - (int) Math.round(dmg);
 
         return rounded;
     }

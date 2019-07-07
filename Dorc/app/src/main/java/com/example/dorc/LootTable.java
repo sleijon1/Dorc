@@ -28,9 +28,12 @@ public class LootTable {
             // So that new items are handled effectively without digging in this code.
             // Possible Component system from unity...
             commonGear.add(basicWeapon);
+            commonGear.add(new LightningDagger());
             legendaryGear.add(basicOffhand);
+            legendaryGear.add(new SpearOfXargon());
             rareGear.add(basicHelmet);
             epicGear.add(basicChestpiece);
+            epicGear.add(new SwordOfDoom());
 
             addWeight(orc.legendaryWeight, "legendary");
             addWeight(orc.epicWeight, "epic");

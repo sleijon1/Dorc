@@ -6,8 +6,9 @@ public class BasicChestpiece extends Gear {
     private static final String TAG = "BasicChestPiece";
 
     public BasicChestpiece(){
-        super(0, R.drawable.chestplate1, "Basic Chestpiece");
+        super(R.drawable.chestplate1, "Basic Chestpiece");
         rarity = "EPIC";
+        this.setStats("damage", 0);
     }
     @Override
     public boolean equals(Object obj){

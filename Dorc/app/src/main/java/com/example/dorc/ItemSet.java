@@ -11,10 +11,10 @@ public class ItemSet {
     private int dmgBonus;
 
     public ItemSet(){
-        helmet = null;
-        chestpiece = null;
-        weapon = null;
-        offhand = null;
+        helmet = new BasicHelmet();
+        chestpiece = new BasicChestpiece();
+        weapon = new BasicWeapon();
+        offhand = new BasicOffhand();
     }
 
     private void calculateBonuses(){

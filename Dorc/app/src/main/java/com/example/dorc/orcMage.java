@@ -18,14 +18,17 @@ public class orcMage extends Orc{
 
     }
 
-    public int hit(double dmg){
+    public int hit() {
+        double dmg = 0;
         BasicWeapon playerWeapon = MainActivity.testPlayer.getItemSet().getWeapon();
-        if(playerWeapon != null){
-            Integer rawDamage = playerWeapon.getStats().get("damage");
-            if(rawDamage != null){
-                dmg = dmg + rawDamage;
+        if (playerWeapon != null) {
+            if (!playerWeapon.getStats().containsKey("mage_killer")) {
+                dmg = super.getPlayerRawDmg();
+            }else{
+                //TODO this is silly
+                dmg = 1000;
             }
         }
-        return super.hit(dmg);
+        return super.dealDamage(dmg);
     }
 }

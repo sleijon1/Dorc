@@ -3,6 +3,7 @@ package com.example.dorc;
 import android.graphics.Bitmap;
 
 public class orcRogue extends Orc{
+    private double dodge = 0.5;
     public orcRogue(Bitmap bitmap){
         super(bitmap);
         setDropWeights();
@@ -17,14 +18,20 @@ public class orcRogue extends Orc{
         commonWeight = 4;
     }
 
-    public int hit(double dmg){
+    public int hit(){
+        double dmg = 0;
         BasicWeapon playerWeapon = MainActivity.testPlayer.getItemSet().getWeapon();
         if(playerWeapon != null){
-            Integer rawDamage = playerWeapon.getStats().get("damage");
-            if(rawDamage != null){
-                dmg = dmg + rawDamage;
+            if(!playerWeapon.getStats().containsKey("dodge_immune")){
+                if(Math.random() < dodge){
+                    dmg = 0;
+                }else{
+                    dmg = super.getPlayerRawDmg();
+                }
+            }else{
+                dmg = super.getPlayerRawDmg();
             }
         }
-        return super.hit(dmg);
+        return super.dealDamage(dmg);
     }
 }

@@ -13,21 +13,15 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 public class Gear {
-    private int damage;
     private int iconId;
     private String name;
     public String rarity;
     private ImageButton btn;
     private HashMap<String, Integer> stats = new HashMap<>();
 
-    public Gear(int dmg, int iconId, String name){
-        damage = dmg;
+    public Gear(int iconId, String name){
         this.iconId = iconId;
         this.name = name;
-    }
-
-    public int getDamage(){
-        return damage;
     }
 
     public int getIconId(){

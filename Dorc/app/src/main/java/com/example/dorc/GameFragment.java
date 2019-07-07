@@ -50,7 +50,7 @@ public class GameFragment extends Fragment {
                 GameView currView = (GameView)tGameView;
 
                 Orc currentOrc = currView.getCurrentOrc();
-                int damage = currentOrc.hit(5.0);
+                int damage = currentOrc.hit();
                 playerHit.setDamage(damage);
 
                 if(currentOrc.getHealthBar() <= 0){
