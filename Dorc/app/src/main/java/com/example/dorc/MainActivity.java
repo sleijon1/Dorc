@@ -49,9 +49,7 @@ public class MainActivity extends FragmentActivity {
         ImageButton backpackBtn = findViewById(R.id.backpackBtn);
         ImageButton equipmentBtn = findViewById(R.id.equipmentBtn);
         TextView dmgText = findViewById(R.id.dmgTextView);
-      //  dmgText.setVisibility(View.INVISIBLE);
-        int dmgInitialPos = dmgText.getTop();
-
+        dmgText.setVisibility(View.INVISIBLE);
 
         // ONCLICKS FOR INTERFACE
         // ONCLICK FOR INVENTORY

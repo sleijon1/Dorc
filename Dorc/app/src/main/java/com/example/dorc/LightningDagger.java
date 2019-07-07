@@ -6,6 +6,6 @@ public class LightningDagger extends BasicWeapon {
         rarity = "COMMON";
         this.setStats("damage", 8);
         this.setStats("warrior_killer", 1);
-        this.setStats("armor_pen", 4);
+        this.setStats("armor_pen", 6);
     }
 }

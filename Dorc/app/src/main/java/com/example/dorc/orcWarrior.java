@@ -1,8 +1,10 @@
 package com.example.dorc;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 public class orcWarrior extends Orc {
+    private static final String TAG = "orcWarrior Class";
     private double block = 0.8;
     public orcWarrior(Bitmap bitmap){
         super(bitmap);
@@ -30,13 +32,14 @@ public class orcWarrior extends Orc {
                     dmg = super.getPlayerRawDmg();
                 }
             }else{
-                int armorPen = playerWeapon.getStats().get("armor_pen");
-                int armorPenPercent = armorPen/10;
-
+                double armorPen = playerWeapon.getStats().get("armor_pen");
+                Log.i(TAG, "armrP " + armorPen);
+                double armorPenPercent = armorPen/10;
+                Log.i(TAG, "armrP " + armorPenPercent);
                 if(armorPenPercent > block){
                     dmg = super.getPlayerRawDmg();
                 }else {
-                    if(Math.random() < block - armorPenPercent){
+                    if(Math.random() < (block - armorPenPercent)){
                         dmg = 0;
                     }else {
                         dmg = super.getPlayerRawDmg();

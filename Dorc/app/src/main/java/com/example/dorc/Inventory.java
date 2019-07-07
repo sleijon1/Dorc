@@ -31,6 +31,11 @@ public class Inventory {
         currentlyHeldItems = gears.size();
     }
 
+    public void removeItem(int index){
+        gears.remove(index);
+        currentlyHeldItems = gears.size();
+    }
+
     public int getTotalSpace(){
         return space;
     }

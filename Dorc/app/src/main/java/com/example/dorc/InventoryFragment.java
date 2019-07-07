@@ -44,9 +44,9 @@ public class InventoryFragment extends Fragment {
         Button btnSellAll = rootView.findViewById(R.id.sellAllBtn);
         btnSellAll.setOnClickListener( view -> {
 
-            for(int i = 0; i<playerInventory.currentlyHeldItems; i++){
-                playerInventory.getInvArray().remove(0);
-            }
+
+            playerInventory.getInvArray().removeAll(playerInventory.getInvArray());
+            playerInventory.currentlyHeldItems = 0;
 
             for(int i = 0; i< playerInventory.getTotalSpace(); i++){
                 ImageButton iv = childTableLayout.findViewWithTag(i);
