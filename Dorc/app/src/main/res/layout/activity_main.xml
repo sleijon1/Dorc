@@ -97,6 +97,15 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="150dp"
             android:layout_marginStart="150dp" tools:layout="@layout/gameview_layout"
             android:visibility="invisible"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:id="@+id/dmgTextView"
+            app:layout_constraintTop_toBottomOf="@+id/healthBar"
+            android:layout_marginBottom="200dp" app:layout_constraintBottom_toBottomOf="@+id/fragment"
+            app:layout_constraintStart_toStartOf="@+id/fragment" app:layout_constraintEnd_toEndOf="@+id/fragment"
+            android:contentDescription="@string/dmg_text" android:textSize="36sp" android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" android:layout_marginTop="16dp" android:layout_height="wrap_content"/>
     <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:progressDrawable="@drawable/progress_bar"
@@ -130,6 +139,7 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/inv_frag_container"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0">
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

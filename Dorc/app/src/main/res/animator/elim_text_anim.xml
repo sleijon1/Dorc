@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set android:ordering="sequentially" xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+            android:propertyName="textColor"
+            android:duration="0"
+            android:valueTo="#e69b01"
+            android:repeatCount="0"/>
+    <objectAnimator
+            android:propertyName="textSize"
+            android:duration="300"
+            android:valueFrom="15sp"
+            android:valueTo="0sp"
+            android:repeatCount="0"/>
+</set>

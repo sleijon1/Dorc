@@ -1,10 +1,14 @@
 package com.example.dorc;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.animation.DynamicAnimation;
+import android.support.animation.FlingAnimation;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -44,6 +48,9 @@ public class MainActivity extends FragmentActivity {
         ImageView rogueImage = findViewById(R.id.orcRogue);
         ImageButton backpackBtn = findViewById(R.id.backpackBtn);
         ImageButton equipmentBtn = findViewById(R.id.equipmentBtn);
+        TextView dmgText = findViewById(R.id.dmgTextView);
+      //  dmgText.setVisibility(View.INVISIBLE);
+        int dmgInitialPos = dmgText.getTop();
 
 
         // ONCLICKS FOR INTERFACE
@@ -85,30 +92,49 @@ public class MainActivity extends FragmentActivity {
         colorAnim.setEvaluator(new ArgbEvaluator());
         colorAnim.setDuration(500);
 
+        //HIT ANIMATIONS
+        AnimatorSet regularAnimation = (AnimatorSet) AnimatorInflater.loadAnimator(this,
+                R.animator.dmg_text_anim);
+        AnimatorSet elimAnimation = (AnimatorSet) AnimatorInflater.loadAnimator(this,
+                R.animator.elim_text_anim);
+
 
         // Communication to game fragment
         sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
         sharedViewModel.getSelected().observe(this, (PlayerHit playerHit)-> {
                 Log.i(TAG, "onChanged: received freshObject");
                 if (playerHit != null) {
-                    if(playerHit.hit){
 
+                    regularAnimation.setTarget(dmgText);
+                    elimAnimation.setTarget(dmgText);
+
+                    String dmgString = String.valueOf(playerHit.getDamage());
+                    dmgText.setText(dmgString);
+                    dmgText.setTextColor(Color.parseColor("#ffffff"));
+                    dmgText.setVisibility(View.VISIBLE);
+
+                    if(playerHit.hit){
                         if(playerHit.getFinishingBlow()){
+                            dmgText.setText(R.string.final_blow);
+                            elimAnimation.start();
+
+                            testPlayer.getGold().increaseGold(50);
+
                             Gear loot = playerHit.getLoot();
                             Inventory playerInventory = testPlayer.getPlayerInventory();
-
                             if(loot != null) {
                                 playerInventory.putInInventory(loot);
                                 playerHit.setLoot(null);
                             }
                             currHealth.setProgress(100);
-                            colorAnim.start();
                         }else{
+                            regularAnimation.start();
                             testPlayer.getGold().increaseGold(20);
                             int calculatedDmg = playerHit.getDamage();
                             int barHealth = currHealth.getProgress();
                             currHealth.setProgress(barHealth - calculatedDmg);
                         }
+                        colorAnim.start();
                         //might have to put this earlier if delay is noticeable
                         int goldAmount = testPlayer.getGold().getAmount();
                         goldDisplay.setText(String.valueOf(goldAmount));

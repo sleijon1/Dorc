@@ -32,4 +32,8 @@
     <string name="equipped_h">Equipped Headgear!</string>
     <string name="equipped_w">Equipped Weapon!</string>
     <string name="equipped_o">Equipped Off-hand!</string>
+    <string name="equipped_i">Equipped Item!</string>
+    <string name="swapped_i">Swapped Item!</string>
+    <string name="dmg_text">Text for displaying damage</string>
+    <string name="final_blow">FINAL BLOW!</string>
 </resources>

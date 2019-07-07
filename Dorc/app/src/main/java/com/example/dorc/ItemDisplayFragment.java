@@ -82,10 +82,11 @@ public class ItemDisplayFragment extends Fragment {
 
                equipButton.setOnClickListener((View view) -> {
                    Gear oldGear = playerSet.setGear(gear);
-                   Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_o, Toast.LENGTH_SHORT).show();
                    if(oldGear != null){
+                       Toast.makeText(getActivity().getApplicationContext(), R.string.swapped_i, Toast.LENGTH_SHORT).show();
                        playerInventory.getInvArray().set(playerInventory.getInvArray().indexOf(gear), oldGear);
                    }else{
+                       Toast.makeText(getActivity().getApplicationContext(), R.string.equipped_i, Toast.LENGTH_SHORT).show();
                        playerInventory.removeItem(gear);
                    }
                });
