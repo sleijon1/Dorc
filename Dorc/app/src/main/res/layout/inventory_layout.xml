@@ -36,4 +36,14 @@
             app:layout_constraintTop_toTopOf="@+id/scrollView2" android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp">
     </LinearLayout>
+    <Button
+            android:text="@string/sell_all_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="150dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="150dp" style="@android:style/Widget.Holo.Button"
+            android:textStyle="bold" android:id="@+id/sellAllBtn"/>
 </android.support.constraint.ConstraintLayout>

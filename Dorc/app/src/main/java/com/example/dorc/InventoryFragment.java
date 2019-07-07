@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import java.util.ArrayList;
+
 public class InventoryFragment extends Fragment {
     private static final String TAG = "inventory fragment";
     SharedViewModel sharedViewModel;
@@ -37,6 +39,22 @@ public class InventoryFragment extends Fragment {
         parentConstraintLayout.setOnClickListener( view -> sharedViewModel.select(this, true));
 
         childTableLayout = parentConstraintLayout.findViewById(R.id.childViewInvt);
+
+        //SELL ALL BUTTON
+        Button btnSellAll = rootView.findViewById(R.id.sellAllBtn);
+        btnSellAll.setOnClickListener( view -> {
+
+            for(int i = 0; i<playerInventory.currentlyHeldItems; i++){
+                playerInventory.getInvArray().remove(0);
+            }
+
+            for(int i = 0; i< playerInventory.getTotalSpace(); i++){
+                ImageButton iv = childTableLayout.findViewWithTag(i);
+                iv.setImageResource(R.drawable.fillerimginv);
+                iv.setClickable(false);
+            }
+
+        });
 
 
         sharedViewModel.getItemDisplay().observe(this, (ItemDisplayFragment fragment) -> {
