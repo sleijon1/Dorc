@@ -50,10 +50,10 @@ public class GameFragment extends Fragment {
                 GameView currView = (GameView)tGameView;
 
                 Orc currentOrc = currView.getCurrentOrc();
-                // TODO 5 is temp, should be set dynamically based on player gear etc.
-                playerHit.setDamage(currentOrc.hit(5.0));
+                int damage = currentOrc.hit(5.0);
+                playerHit.setDamage(damage);
 
-                if(currentOrc.getHealthBar() == 0){
+                if(currentOrc.getHealthBar() <= 0){
                     playerHit.setFinishingBlow();
 
                     LootTable lootTable = new LootTable(currentOrc);

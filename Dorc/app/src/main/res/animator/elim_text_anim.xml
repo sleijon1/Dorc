@@ -7,7 +7,7 @@
             android:repeatCount="0"/>
     <objectAnimator
             android:propertyName="textSize"
-            android:duration="300"
+            android:duration="200"
             android:valueFrom="15sp"
             android:valueTo="0sp"
             android:repeatCount="0"/>

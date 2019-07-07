@@ -16,9 +16,7 @@ public class Orc {
 
     public Orc(Bitmap bmp){
         image = bmp;
-
         healthBar = 25;
-        maxHealth = 25;
     }
 
     public void draw(Canvas canvas) {

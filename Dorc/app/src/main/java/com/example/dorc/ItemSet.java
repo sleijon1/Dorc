@@ -62,19 +62,19 @@ public class ItemSet {
         offhand = gear;
     }
 
-    public Gear getHelmet(){
+    public BasicHelmet getHelmet(){
         return helmet;
     }
 
-    public Gear getChestpiece(){
+    public BasicChestpiece getChestpiece(){
         return chestpiece;
     }
 
-    public Gear getWeapon(){
+    public BasicWeapon getWeapon(){
         return weapon;
     }
 
-    public Gear getOffhand(){
+    public BasicOffhand getOffhand(){
         return offhand;
     }
 }

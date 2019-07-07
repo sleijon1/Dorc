@@ -14,7 +14,7 @@ public class PlayerHit {
     }
 
     public void setDamage(int dmg){
-        this.damage = dmg;
+        this.damage = dmg ;
     }
 
     public int getDamage(){

@@ -2,6 +2,7 @@ package com.example.dorc;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -13,10 +14,10 @@ public class LootTable {
     private static BasicOffhand basicOffhand = new BasicOffhand();
     private static BasicHelmet basicHelmet = new BasicHelmet();
 
-    private Gear[] rareGear = new Gear[1];
-    private Gear[] legendaryGear = new Gear[1];
-    private Gear[] epicGear = new Gear[1];
-    private Gear[] commonGear = new Gear[1];
+    private ArrayList<Gear> rareGear = new ArrayList<Gear>(1);
+    private ArrayList<Gear> legendaryGear = new ArrayList<Gear>(1);
+    private ArrayList<Gear> epicGear = new ArrayList<Gear>(1);
+    private ArrayList<Gear> commonGear = new ArrayList<Gear>(1);
 
     private LinkedList<String> linkedList = new LinkedList<String>();
 
@@ -26,10 +27,10 @@ public class LootTable {
             // This needs to be changed in the future to be dynamically added somehow
             // So that new items are handled effectively without digging in this code.
             // Possible Component system from unity...
-            commonGear[0] = basicWeapon;
-            legendaryGear[0] = basicOffhand;
-            rareGear[0] = basicHelmet;
-            epicGear[0] = basicChestpiece;
+            commonGear.add(basicWeapon);
+            legendaryGear.add(basicOffhand);
+            rareGear.add(basicHelmet);
+            epicGear.add(basicChestpiece);
 
             addWeight(orc.legendaryWeight, "legendary");
             addWeight(orc.epicWeight, "epic");
@@ -59,20 +60,20 @@ public class LootTable {
 
         switch(rarity){
             case "legendary":
-                amountOfGear = legendaryGear.length;
-                loot = legendaryGear[new Random().nextInt(amountOfGear)];
+                amountOfGear = legendaryGear.size();
+                loot = legendaryGear.get(new Random().nextInt(amountOfGear));
                 break;
             case "epic":
-                amountOfGear = epicGear.length;
-                loot = epicGear[new Random().nextInt(amountOfGear)];
+                amountOfGear = epicGear.size();
+                loot = epicGear.get(new Random().nextInt(amountOfGear));
                 break;
             case "rare":
-                amountOfGear = rareGear.length;
-                loot = rareGear[new Random().nextInt(amountOfGear)];
+                amountOfGear = rareGear.size();
+                loot = rareGear.get(new Random().nextInt(amountOfGear));
                 break;
             case "common":
-                 amountOfGear = commonGear.length;
-                 loot = commonGear[new Random().nextInt(amountOfGear)];
+                 amountOfGear = commonGear.size();
+                 loot = commonGear.get(new Random().nextInt(amountOfGear));
                 break;
 
                 default:

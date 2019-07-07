@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.content.ContentValues.TAG;
 
 public class Gear {
@@ -15,6 +18,7 @@ public class Gear {
     private String name;
     public String rarity;
     private ImageButton btn;
+    private HashMap<String, Integer> stats = new HashMap<>();
 
     public Gear(int dmg, int iconId, String name){
         damage = dmg;
@@ -35,5 +39,13 @@ public class Gear {
 
     public String getRarity(){
         return rarity;
+    }
+
+    public void setStats(String statName, Integer value){
+        stats.put(statName, value);
+    }
+
+    public Map<String, Integer> getStats(){
+        return stats;
     }
 }
