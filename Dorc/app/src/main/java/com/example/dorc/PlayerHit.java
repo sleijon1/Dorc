@@ -19,8 +19,10 @@ public class PlayerHit {
         this.damage = dmg ;
     }
 
-    public void setDamage(String dmg){this.damage = dmg;}
-
+    public void setHit(boolean hit){
+        this.hit = hit;
+    }
+    
     public int getDamage(){
         return this.damage;
     }
