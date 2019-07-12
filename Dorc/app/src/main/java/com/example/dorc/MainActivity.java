@@ -136,6 +136,8 @@ public class MainActivity extends FragmentActivity {
                         //might have to put this earlier if delay is noticeable
                         int goldAmount = testPlayer.getGold().getAmount();
                         goldDisplay.setText(String.valueOf(goldAmount));
+                    }else{
+                        regularAnimation.start();
                     }
                     Log.i(TAG, "object was updated");
                 //
