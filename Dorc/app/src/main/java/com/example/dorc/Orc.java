@@ -68,5 +68,9 @@ public class Orc {
         this.rareWeight = rareWeight;
         this.commonWeight = commonWeight;
     }
+
+    public String onMiss(){
+        return "";
+    }
 }
 

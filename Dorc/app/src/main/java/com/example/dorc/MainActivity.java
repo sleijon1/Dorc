@@ -106,7 +106,12 @@ public class MainActivity extends FragmentActivity {
                     regularAnimation.setTarget(dmgText);
                     elimAnimation.setTarget(dmgText);
 
-                    String dmgString = String.valueOf(playerHit.getDamage());
+                    String dmgString;
+                    if(!playerHit.getMiss()){
+                        dmgString = String.valueOf(playerHit.getDamage());
+                    }else{
+                        dmgString = playerHit.getMissMessage();
+                    }
                     dmgText.setText(dmgString);
                     dmgText.setTextColor(Color.parseColor("#ffffff"));
                     dmgText.setVisibility(View.VISIBLE);
@@ -126,11 +131,13 @@ public class MainActivity extends FragmentActivity {
                             }
                             currHealth.setProgress(100);
                         }else{
-                            regularAnimation.start();
-                            testPlayer.getGold().increaseGold(20);
-                            int calculatedDmg = playerHit.getDamage();
-                            int barHealth = currHealth.getProgress();
-                            currHealth.setProgress(barHealth - calculatedDmg);
+                            if(!playerHit.getMiss()) {
+                                regularAnimation.start();
+                                testPlayer.getGold().increaseGold(20);
+                                int calculatedDmg = playerHit.getDamage();
+                                int barHealth = currHealth.getProgress();
+                                currHealth.setProgress(barHealth - calculatedDmg);
+                            }
                         }
                         colorAnim.start();
                         //might have to put this earlier if delay is noticeable

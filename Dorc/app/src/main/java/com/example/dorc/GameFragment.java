@@ -42,7 +42,7 @@ public class GameFragment extends Fragment {
             }
             Log.i(TAG, "lifecyclebool: " + starting);
         });
-
+        //TODO should be onclicklistener since motionevent isnt used
         gameView.setOnTouchListener( (View tGameView, MotionEvent event) -> {
                 tGameView.startAnimation(animShake);
 
@@ -51,7 +51,13 @@ public class GameFragment extends Fragment {
 
                 Orc currentOrc = currView.getCurrentOrc();
                 int damage = currentOrc.hit();
+                if(damage == 0){
+                    playerHit.setMiss(true);
+                    playerHit.setMissMessage(currentOrc.onMiss());
+                }
+
                 playerHit.setDamage(damage);
+
 
                 if(currentOrc.getHealthBar() <= 0){
                     playerHit.setFinishingBlow();

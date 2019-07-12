@@ -49,4 +49,8 @@ public class orcWarrior extends Orc {
         }
         return super.dealDamage(dmg);
     }
+
+    public String onMiss(){
+        return "BLOCK";
+    }
 }

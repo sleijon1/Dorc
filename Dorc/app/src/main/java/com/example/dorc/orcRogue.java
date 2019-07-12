@@ -34,4 +34,8 @@ public class orcRogue extends Orc{
         }
         return super.dealDamage(dmg);
     }
+
+    public String onMiss(){
+        return "DODGE";
+    }
 }

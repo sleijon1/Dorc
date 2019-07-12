@@ -7,6 +7,8 @@ public class PlayerHit {
     private int damage;
     private boolean finishingBlow;
     private Gear loot;
+    private boolean miss;
+    private String missMessage;
 
     // Can only be hit for now to simplify
     public PlayerHit(){
@@ -16,6 +18,8 @@ public class PlayerHit {
     public void setDamage(int dmg){
         this.damage = dmg ;
     }
+
+    public void setDamage(String dmg){this.damage = dmg;}
 
     public int getDamage(){
         return this.damage;
@@ -36,4 +40,17 @@ public class PlayerHit {
     public Gear getLoot(){
         return this.loot;
     }
+
+    public void setMiss(boolean miss){
+        this.miss = miss;
+    }
+
+    public boolean getMiss(){
+        return miss;
+    }
+
+    public String getMissMessage(){
+        return missMessage;
+    }
+
 }
