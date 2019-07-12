@@ -17,8 +17,19 @@
             android:clickable="true" android:focusable="true" android:focusableInTouchMode="true"
             android:id="@+id/childViewEq" android:background="@color/colorPrimaryDark">
 
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/lvlTextView"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/btnPlayerChest" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
+                android:contentDescription="@string/lvl_text_view_description" android:textStyle="bold"/>
         <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
                                               android:id="@+id/guideline12" app:layout_constraintGuide_percent="0.33"
+                                              android:orientation="horizontal"/>
+        <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                              android:id="@+id/guideline25" app:layout_constraintGuide_percent="0.99"
                                               android:orientation="horizontal"/>
         <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
                                               android:id="@+id/guideline16" app:layout_constraintGuide_percent="0.66"
@@ -78,6 +89,16 @@
                                               android:id="@+id/guideline21"
                                               android:orientation="vertical"
                                               app:layout_constraintGuide_percent="0.0"/>
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBarExp" android:layout_weight="1"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/btnPlayerChest"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline19" android:max="100"
+                android:progress="100" android:progressDrawable="@drawable/progress_bar_exp"
+                app:layout_constraintStart_toEndOf="@+id/lvlTextView" android:layout_marginStart="8dp"/>
     </android.support.constraint.ConstraintLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -88,6 +109,7 @@
             app:layout_constraintTop_toTopOf="@+id/childViewEq"
             app:layout_constraintBottom_toBottomOf="@+id/childViewEq"
             app:layout_constraintEnd_toEndOf="@+id/childViewEq" app:layout_constraintStart_toStartOf="@+id/childViewEq"
-            android:layout_marginStart="16dp" android:layout_marginTop="16dp" android:layout_marginEnd="16dp">
+            android:layout_marginStart="16dp" android:layout_marginTop="16dp" android:layout_marginEnd="16dp"
+            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="1.0">
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

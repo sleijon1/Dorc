@@ -3,6 +3,7 @@ package com.example.dorc;
 import android.graphics.Bitmap;
 
 public class orcRogue extends Orc{
+    private int experience = 15;
     private double dodge = 0.5;
     public orcRogue(Bitmap bitmap){
         super(bitmap);
@@ -37,5 +38,9 @@ public class orcRogue extends Orc{
 
     public String onMiss(){
         return "DODGE";
+    }
+
+    public int getExperience(){
+        return experience;
     }
 }

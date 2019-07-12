@@ -120,6 +120,7 @@ public class MainActivity extends FragmentActivity {
 
                     if(!playerHit.getMiss()){
                         if(playerHit.getFinishingBlow()){
+                            testPlayer.increaseExp(playerHit.getExperienceGained());
                             dmgText.setText(R.string.final_blow);
                             elimAnimation.start();
 

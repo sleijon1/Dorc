@@ -72,5 +72,9 @@ public class Orc {
     public String onMiss(){
         return "";
     }
+
+    public int getExperience(){
+        return 0;
+    }
 }
 

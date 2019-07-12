@@ -3,6 +3,8 @@ package com.example.dorc;
 import android.graphics.Bitmap;
 
 public class orcMage extends Orc{
+    private int experience = 5;
+
     public orcMage(Bitmap bitmap){
         super(bitmap);
         setDropWeights();
@@ -30,5 +32,9 @@ public class orcMage extends Orc{
             }
         }
         return super.dealDamage(dmg);
+    }
+
+    public int getExperience(){
+        return experience;
     }
 }

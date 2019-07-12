@@ -60,6 +60,7 @@ public class GameFragment extends Fragment {
 
 
                 if(currentOrc.getHealthBar() <= 0){
+                    playerHit.setExperienceGained(currentOrc.getExperience());
                     playerHit.setFinishingBlow();
 
                     LootTable lootTable = new LootTable(currentOrc);

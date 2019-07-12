@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 public class orcWarrior extends Orc {
+    private int experience = 20;
     private static final String TAG = "orcWarrior Class";
     private double block = 0.8;
     public orcWarrior(Bitmap bitmap){
@@ -52,5 +53,9 @@ public class orcWarrior extends Orc {
 
     public String onMiss(){
         return "BLOCK";
+    }
+
+    public int getExperience(){
+        return experience;
     }
 }

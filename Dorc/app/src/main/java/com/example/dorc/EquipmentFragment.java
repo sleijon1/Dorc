@@ -11,9 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
+import android.widget.*;
 
 import static android.content.ContentValues.TAG;
 
@@ -62,6 +60,18 @@ public class EquipmentFragment extends Fragment {
         offhandBtn = childConstraintLayout.findViewById(R.id.btnPlayerOffh);
         helmetBtn = childConstraintLayout.findViewById(R.id.btnPlayerHead);
         chestBtn = childConstraintLayout.findViewById(R.id.btnPlayerChest);
+
+        //FIND EXP VIEWS
+        TextView lvlTextView = childConstraintLayout.findViewById(R.id.lvlTextView);
+        ProgressBar expBar = childConstraintLayout.findViewById(R.id.progressBarExp);
+
+        Player currentPlayer = MainActivity.testPlayer;
+
+        String lvlString = getResources().getString(R.string.lvl_text_view_string);
+        String textViewText = lvlString + currentPlayer.getLevel();
+        lvlTextView.setText(textViewText);
+
+        expBar.setProgress(currentPlayer.getPercentExperience());
 
         itemSet = MainActivity.testPlayer.getItemSet();
 

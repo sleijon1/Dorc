@@ -37,4 +37,6 @@
     <string name="dmg_text">Text for displaying damage</string>
     <string name="final_blow">FINAL BLOW!</string>
     <string name="sell_all_button">SELL ALL</string>
+    <string name="lvl_text_view_string">Lvl.</string>
+    <string name="lvl_text_view_description">Text view for displaying players current level</string>
 </resources>

@@ -8,11 +8,20 @@ public class PlayerHit {
     private Gear loot;
     private boolean miss;
     private String missMessage;
+    private int experienceGained;
 
     // Can only be hit for now to simplify
     public PlayerHit(){
     }
 
+
+    public void setExperienceGained(int experience){
+        experienceGained = experience;
+    }
+
+    public int getExperienceGained(){
+        return experienceGained;
+    }
     public void setDamage(int dmg){
         this.damage = dmg ;
     }
