@@ -57,9 +57,6 @@ public class GameFragment extends Fragment {
                 }
 
                 playerHit.setDamage(damage);
-                if(damage == 0){
-                    playerHit.setHit(false);
-                }
 
 
                 if(currentOrc.getHealthBar() <= 0){

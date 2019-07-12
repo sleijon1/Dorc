@@ -3,7 +3,6 @@ package com.example.dorc;
 //Class for keeping all information regarding a current player hit
 
 public class PlayerHit {
-    boolean hit;
     private int damage;
     private boolean finishingBlow;
     private Gear loot;
@@ -12,17 +11,12 @@ public class PlayerHit {
 
     // Can only be hit for now to simplify
     public PlayerHit(){
-        hit = true;
     }
 
     public void setDamage(int dmg){
         this.damage = dmg ;
     }
 
-    public void setHit(boolean hit){
-        this.hit = hit;
-    }
-    
     public int getDamage(){
         return this.damage;
     }
@@ -49,6 +43,10 @@ public class PlayerHit {
 
     public boolean getMiss(){
         return miss;
+    }
+
+    public void setMissMessage(String missMessage){
+        this.missMessage = missMessage;
     }
 
     public String getMissMessage(){

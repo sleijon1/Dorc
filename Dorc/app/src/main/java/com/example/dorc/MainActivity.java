@@ -95,7 +95,8 @@ public class MainActivity extends FragmentActivity {
                 R.animator.dmg_text_anim);
         AnimatorSet elimAnimation = (AnimatorSet) AnimatorInflater.loadAnimator(this,
                 R.animator.elim_text_anim);
-
+        AnimatorSet missAnimation = (AnimatorSet) AnimatorInflater.loadAnimator(this,
+                R.animator.miss_text_anim);
 
         // Communication to game fragment
         sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel.class);
@@ -105,6 +106,7 @@ public class MainActivity extends FragmentActivity {
 
                     regularAnimation.setTarget(dmgText);
                     elimAnimation.setTarget(dmgText);
+                    missAnimation.setTarget(dmgText);
 
                     String dmgString;
                     if(!playerHit.getMiss()){
@@ -116,7 +118,7 @@ public class MainActivity extends FragmentActivity {
                     dmgText.setTextColor(Color.parseColor("#ffffff"));
                     dmgText.setVisibility(View.VISIBLE);
 
-                    if(playerHit.hit){
+                    if(!playerHit.getMiss()){
                         if(playerHit.getFinishingBlow()){
                             dmgText.setText(R.string.final_blow);
                             elimAnimation.start();
@@ -144,7 +146,7 @@ public class MainActivity extends FragmentActivity {
                         int goldAmount = testPlayer.getGold().getAmount();
                         goldDisplay.setText(String.valueOf(goldAmount));
                     }else{
-                        regularAnimation.start();
+                        missAnimation.start();
                     }
                     Log.i(TAG, "object was updated");
                 //
