@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -94,6 +96,18 @@ public class ItemDisplayFragment extends Fragment {
            }else{
                equipButton.setText(R.string.upgrade_btn);
                //TODO upgrade functionality
+               equipButton.setOnClickListener((View view) -> {
+                   MainActivity.fadeAnimation(view);
+
+                   ConstraintLayout fragContainer = rootView.findViewById(R.id.upgrade_fragment_container);
+
+                   FragmentManager fragMan = getChildFragmentManager();
+                   FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+                   Fragment myFrag = new UpgradeFragment();
+                   fragTransaction.add(fragContainer.getId(), myFrag, "upgrade_fragment");
+                   fragTransaction.commit();
+               });
            }
         });
 

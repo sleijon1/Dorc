@@ -10,6 +10,14 @@
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
+            android:layout_height="0dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="32dp" android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp" android:layout_marginBottom="32dp" android:id="@+id/upgrade_item_container">
+
+    </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
             android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="80dp" android:layout_marginEnd="2dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="2dp"

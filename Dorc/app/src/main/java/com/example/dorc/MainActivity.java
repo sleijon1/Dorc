@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.animation.DynamicAnimation;
 import android.support.animation.FlingAnimation;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -49,7 +50,23 @@ public class MainActivity extends FragmentActivity {
         ImageButton backpackBtn = findViewById(R.id.backpackBtn);
         ImageButton equipmentBtn = findViewById(R.id.equipmentBtn);
         TextView dmgText = findViewById(R.id.dmgTextView);
+        ImageButton shopButton = findViewById(R.id.shopButton);
+
         dmgText.setVisibility(View.INVISIBLE);
+
+        // ONCLICK FOR SHOP
+        shopButton.setOnClickListener((View view) -> {
+            fadeAnimation(view);
+
+            ConstraintLayout fragContainer = findViewById(R.id.shop_fragment_container);
+
+            fragMan = getSupportFragmentManager();
+            FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+            Fragment myFrag = new ShopFragment();
+            fragTransaction.add(fragContainer.getId(), myFrag, "shop_fragment");
+            fragTransaction.commit();
+        });
 
         // ONCLICKS FOR INTERFACE
         // ONCLICK FOR INVENTORY

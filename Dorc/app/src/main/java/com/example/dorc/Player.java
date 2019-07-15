@@ -12,7 +12,7 @@ public class Player {
     public Player(){
         this.level = 0;
         this.percentExperience = 0;
-     // Player is developed later. This is a class that should be instantiated when
+     // This is a class that should be instantiated when
      // a player connects with their google play account. The stats:gold, experience, gear etc.
      // should be gathered from a database when player logs in.
     }
@@ -27,6 +27,9 @@ public class Player {
             level += 1;
             percentExperience = 0;
         }else{
+            if(level > 0){
+                increase = increase/level;
+            }
             percentExperience += increase;
         }
     }

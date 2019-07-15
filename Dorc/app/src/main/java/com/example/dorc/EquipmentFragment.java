@@ -25,7 +25,6 @@ public class EquipmentFragment extends Fragment {
     FragmentManager fragMan;
     ConstraintLayout childConstraintLayout;
     SharedViewModel sharedViewModel;
-    Gear currentlyConfiguring;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

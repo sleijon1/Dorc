@@ -13,6 +13,7 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<Fragment> toCancel = new MutableLiveData<>();
     private final MutableLiveData<Fragment> toCommit = new MutableLiveData<>();
     private final MutableLiveData<Gear> gearToDisplay = new MutableLiveData<>();
+    private final MutableLiveData<Gear> gearToUpgrade = new MutableLiveData<>();
     private final MutableLiveData<ItemDisplayFragment> cancelFrag = new MutableLiveData<>();
     private final MutableLiveData<ItemSet> playerGear = new MutableLiveData<>();
     private final MutableLiveData<ImageButton>  imgBtn = new MutableLiveData<>();
@@ -43,12 +44,18 @@ public class SharedViewModel extends ViewModel {
 
     public void select(Gear toDisplay){ gearToDisplay.setValue(toDisplay); }
 
+    public void select(Gear toUpgrade, ItemDisplayFragment fragment){ gearToUpgrade.setValue(toUpgrade);}
+
     public LiveData<ImageButton> getImgBtn(){return imgBtn;}
 
     public LiveData<ItemSet> getItemSet(){return playerGear;}
 
     public LiveData<PlayerHit> getSelected(){
         return selected;
+    }
+
+    public LiveData<Gear> getGearToUpgrade(){
+        return gearToUpgrade;
     }
 
     public LiveData<String> getSelectedOrc(){

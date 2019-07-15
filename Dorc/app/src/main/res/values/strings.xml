@@ -39,4 +39,9 @@
     <string name="sell_all_button">SELL ALL</string>
     <string name="lvl_text_view_string">Lvl.</string>
     <string name="lvl_text_view_description">Text view for displaying players current level</string>
+    <string name="boots_shop">BOOTS</string>
+    <string name="chest_shop">CHEST</string>
+    <string name="helmet_shop">HELMET</string>
+    <string name="upgrade_headline">Upgradable Properties:</string>
+    <string name="damage_upgrade_text">Damage</string>
 </resources>
